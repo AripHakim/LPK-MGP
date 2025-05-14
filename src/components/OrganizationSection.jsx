@@ -9,7 +9,7 @@ const OrganizationSection = () => {
               <div className="text-center">
                 <div className="w-24 h-24 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
                   <img 
-                  src="../public/organisasi/indra shacho.png" 
+                  src="/organisasi/indra shacho.png" 
                   alt="" className="w-full h-full rounded-full border-2 border-secondary-600"
                   />
                 </div>
@@ -22,7 +22,7 @@ const OrganizationSection = () => {
               <div className="text-center">
                 <div className="w-20 h-20 bg-blue-100 rounded-full mx-auto mb-3 flex items-center justify-center">
                 <img 
-                  src="../public/organisasi/ekasila.jpeg" 
+                  src="/organisasi/ekasila.jpeg" 
                   alt="" className="w-full h-full rounded-full border-2 border-secondary-600 object-cover object-[10%_10%]"
                   />
                 </div>
@@ -32,7 +32,7 @@ const OrganizationSection = () => {
               <div className="text-center">
                 <div className="w-20 h-20 bg-blue-100 rounded-full mx-auto mb-3 flex items-center justify-center">
                 <img 
-                  src="../public/organisasi/juan.jpeg" 
+                  src="/organisasi/juan.jpeg" 
                   alt="" className="w-full h-full rounded-full border-2 border-secondary-600 object-cover object-[10%_20%]"
                   />
                 </div>
@@ -42,7 +42,7 @@ const OrganizationSection = () => {
               <div className="text-center">
                 <div className="w-20 h-20 bg-blue-100 rounded-full mx-auto mb-3 flex items-center justify-center">
                 <img 
-                  src="../public/organisasi/DAHLIA SENSEI.png" 
+                  src="/organisasi/DAHLIA SENSEI.png" 
                   alt="" className="w-full h-full rounded-full border-2 border-secondary-600 object-cover object-[10%_50%]"
                   />
                 </div>
@@ -52,7 +52,7 @@ const OrganizationSection = () => {
               <div className="text-center">
                 <div className="w-20 h-20 bg-blue-100 rounded-full mx-auto mb-3 flex items-center justify-center">
                 <img 
-                  src="../public/organisasi/FARAZ.jpg" 
+                  src="/organisasi/FARAZ.jpg" 
                   alt="" className="w-full h-full rounded-full border-2 border-secondary-600 object-cover object-[10%_70%]"
                   />
                 </div>
@@ -63,7 +63,7 @@ const OrganizationSection = () => {
               <div className="text-center">
                 <div className="w-20 h-20 bg-blue-100 rounded-full mx-auto mb-3 flex items-center justify-center">
                 <img 
-                  src="../public/organisasi/isma.JPG" 
+                  src="/organisasi/isma.JPG" 
                   alt="" className="w-full h-full rounded-full border-2 border-secondary-600 object-cover object-[10%_10%]"
                   />
                 </div>
@@ -73,7 +73,7 @@ const OrganizationSection = () => {
               <div className="text-center">
                 <div className="w-20 h-20 bg-blue-100 rounded-full mx-auto mb-3 flex items-center justify-center">
                 <img 
-                  src="../public/organisasi/devi.jpg" 
+                  src="/organisasi/devi.jpg" 
                   alt="" className="w-full h-full rounded-full border-2 border-secondary-600 object-cover object-top"
                   />
                 </div>

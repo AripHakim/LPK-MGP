@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import emailjs from 'emailjs-com';
+import L from 'leaflet';
+
+const customIcon = L.icon({
+  iconUrl: '/pin.png', // ganti dengan path ke ikon kamu (bisa .png atau .svg)
+  iconSize: [50, 50],  // sesuaikan ukuran
+  iconAnchor: [16, 32], // titik anchor (biasanya bagian bawah icon)
+  popupAnchor: [0, -32], // posisi popup relatif terhadap ikon
+});
 
 // Dynamically import Leaflet to avoid SSR issues
 const MapWithNoSSR = dynamic(
@@ -17,9 +25,21 @@ const MapWithNoSSR = dynamic(
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          <Marker position={center}>
-            <Popup>
-              LPK Maleo Gogakuin Palu <br /> Jl. Undata No. 27
+          <Marker position={center} icon={customIcon}>
+            <Popup maxWidth={1600}>
+              <div style={{ textAlign: 'center', width: '100%' }}>
+                <img 
+                  src="/lpk-maleo.jpg" 
+                  alt="Foto LPK" 
+                  style={{
+                    width: '300px',
+                    height: '150px',
+                    maxWidth: '1550px',  // batas maksimum tampilan
+                    borderRadius: '0.5rem',
+                    marginTop: '0.5rem'
+                  }} 
+                />
+              </div>
             </Popup>
           </Marker>
         </MapContainer>
@@ -30,14 +50,6 @@ const MapWithNoSSR = dynamic(
 );
 
 const ContactSection = () => {
-  // const [formData, setFormData] = useState({
-    // name: '',
-  //   email: '',
-  //   phone: '',
-  //   message: ''
-  // });
-
-  // Coordinates for LPK Maleo Gogakuin Palu (from Google Maps link)
   const mapCenter = [-0.8879073, 119.8654517];
   const mapZoom = 17;
 
@@ -48,28 +60,6 @@ const ContactSection = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData(prev => ({
-  //     ...prev,
-  //     [name]: value
-  //   }));
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // Handle form submission here
-  //   console.log('Form submitted:', formData);
-  //   alert('Terima kasih telah menghubungi kami! Kami akan segera merespons pesan Anda.');
-  //   setFormData({
-  //     name: '',
-  //     email: '',
-  //     phone: '',
-  //     message: ''
-  //   });
-  // };
 
   const handleChange = (e) => {
     const { name, value } = e.target;

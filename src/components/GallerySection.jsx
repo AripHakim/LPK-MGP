@@ -3,32 +3,32 @@ const GallerySection = () => {
       {
         id: 1,
         title: "Kerja Bakti",
-        image: "../public/event/10.jpg"
+        image: "/event/10.jpg"
       },
       {
         id: 2,
         title: "Hari Kebudayaan",
-        image: "../public/event/7.jpg"
+        image: "/event/7.jpg"
       },
       {
         id: 3,
         title: "Interview",
-        image: "../public/event/3.jpg"
+        image: "/event/3.jpg"
       },
       {
         id: 4,
         title: "Kerja Bakti",
-        image: "../public/event/16.jpg"
+        image: "/event/16.jpg"
       },
       {
         id: 5,
         title: "Olahraga",
-        image: "../public/event/9.jpg"
+        image: "/event/9.jpg"
       },
       {
         id: 6,
         title: "Pembelajaran",
-        image: "../public/event/11.jpg"
+        image: "/event/11.jpg"
       }
     ];
   

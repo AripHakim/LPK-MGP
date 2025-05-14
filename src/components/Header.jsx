@@ -8,15 +8,15 @@ const Header = () => {
   const modalRef = useRef(null);
 
   const [formData, setFormData] = useState({
-    fullName: '',
-    birthPlace: '',
-    birthDate: '',
-    gender: '',
-    lastEducation: '',
-    address: '',
-    weight: '',
-    height: '',
-    phone: ''
+    namaLengkap: '',
+    tempatLahir: '',
+    tanggalLahir: '',
+    jenisKelamin: '',
+    pendidikanTerakhir: '',
+    alamatLengkap: '',
+    beratBadan: '',
+    tinggiBadan: '',
+    noHP: ''
   });
 
   useEffect(() => {
@@ -65,15 +65,15 @@ const Header = () => {
     setIsModalOpen(false);
     // Reset form
     setFormData({
-      fullName: '',
-      birthPlace: '',
-      birthDate: '',
-      gender: '',
-      lastEducation: '',
-      address: '',
-      weight: '',
-      height: '',
-      phone: ''
+      namaLengkap: '',
+      tempatLahir: '',
+      tanggalLahir: '',
+      jenisKelamin: '',
+      pendidikanTerakhir: '',
+      alamatLengkap: '',
+      beratBadan: '',
+      tinggiBadan: '',
+      noHP: ''
     });
   };
 
@@ -160,14 +160,14 @@ const Header = () => {
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="namaLengkap" className="block text-sm font-medium text-gray-700 mb-1">
                     Nama Lengkap <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
-                    id="fullName"
-                    name="fullName"
-                    value={formData.fullName}
+                    id="namaLengkap"
+                    name="namaLengkap"
+                    value={formData.namaLengkap}
                     onChange={handleInputChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary-500"
                     required
@@ -175,14 +175,14 @@ const Header = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="birthPlace" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="tempatLahir" className="block text-sm font-medium text-gray-700 mb-1">
                     Tempat Lahir <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
-                    id="birthPlace"
-                    name="birthPlace"
-                    value={formData.birthPlace}
+                    id="tempatLahir"
+                    name="tempatLahir"
+                    value={formData.tempatLahir}
                     onChange={handleInputChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary-500"
                     required
@@ -190,14 +190,14 @@ const Header = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="birthDate" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="tanggalLahir" className="block text-sm font-medium text-gray-700 mb-1">
                     Tanggal Lahir <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="date"
-                    id="birthDate"
-                    name="birthDate"
-                    value={formData.birthDate}
+                    id="tanggalLahir"
+                    name="tanggalLahir"
+                    value={formData.tanggalLahir}
                     onChange={handleInputChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary-500"
                     required
@@ -212,9 +212,9 @@ const Header = () => {
                     <label className="flex items-center">
                       <input
                         type="radio"
-                        name="gender"
+                        name="jenisKelamin"
                         value="Laki-laki"
-                        checked={formData.gender === 'Laki-laki'}
+                        checked={formData.jenisKelamin === 'Laki-laki'}
                         onChange={handleInputChange}
                         className="h-4 w-4 text-secondary-600 focus:ring-secondary-500 border-gray-300"
                         required
@@ -224,9 +224,9 @@ const Header = () => {
                     <label className="flex items-center">
                       <input
                         type="radio"
-                        name="gender"
+                        name="jenisKelamin"
                         value="Perempuan"
-                        checked={formData.gender === 'Perempuan'}
+                        checked={formData.jenisKelamin === 'Perempuan'}
                         onChange={handleInputChange}
                         className="h-4 w-4 text-secondary-600 focus:ring-secondary-500 border-gray-300"
                       />
@@ -236,13 +236,13 @@ const Header = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="lastEducation" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="pendidikanTerakhir" className="block text-sm font-medium text-gray-700 mb-1">
                     Pendidikan Terakhir <span className="text-red-500">*</span>
                   </label>
                   <select
-                    id="lastEducation"
-                    name="lastEducation"
-                    value={formData.lastEducation}
+                    id="pendidikanTerakhir"
+                    name="pendidikanTerakhir"
+                    value={formData.pendidikanTerakhir}
                     onChange={handleInputChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary-500"
                     required
@@ -258,14 +258,14 @@ const Header = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="alamatLengkap" className="block text-sm font-medium text-gray-700 mb-1">
                     Alamat Lengkap <span className="text-red-500">*</span>
                   </label>
                   <textarea
-                    id="address"
-                    name="address"
+                    id="alamatLengkap"
+                    name="alamatLengkap"
                     rows="3"
-                    value={formData.address}
+                    value={formData.alamatLengkap}
                     onChange={handleInputChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary-500"
                     required
@@ -274,28 +274,28 @@ const Header = () => {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="weight" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="beratBadan" className="block text-sm font-medium text-gray-700 mb-1">
                       Berat Badan (kg) <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="number"
-                      id="weight"
-                      name="weight"
-                      value={formData.weight}
+                      id="beratBadan"
+                      name="beratBadan"
+                      value={formData.beratBadan}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary-500"
                       required
                     />
                   </div>
                   <div>
-                    <label htmlFor="height" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="tinggiBadan" className="block text-sm font-medium text-gray-700 mb-1">
                       Tinggi Badan (cm) <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="number"
-                      id="height"
-                      name="height"
-                      value={formData.height}
+                      id="tinggiBadan"
+                      name="tinggiBadan"
+                      value={formData.tinggiBadan}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary-500"
                       required
@@ -304,14 +304,14 @@ const Header = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="noHP" className="block text-sm font-medium text-gray-700 mb-1">
                     No. Handphone/WhatsApp <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
+                    id="noHP"
+                    name="noHP"
+                    value={formData.noHP}
                     onChange={handleInputChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary-500"
                     required
