@@ -1,0 +1,59 @@
+const GallerySection = () => {
+    const galleryItems = [
+      {
+        id: 1,
+        title: "Kerja Bakti",
+        image: "../public/event/10.jpg"
+      },
+      {
+        id: 2,
+        title: "Hari Kebudayaan",
+        image: "../public/event/7.jpg"
+      },
+      {
+        id: 3,
+        title: "Interview",
+        image: "../public/event/3.jpg"
+      },
+      {
+        id: 4,
+        title: "Kerja Bakti",
+        image: "../public/event/16.jpg"
+      },
+      {
+        id: 5,
+        title: "Olahraga",
+        image: "../public/event/9.jpg"
+      },
+      {
+        id: 6,
+        title: "Pembelajaran",
+        image: "../public/event/11.jpg"
+      }
+    ];
+  
+    return (
+      <section id="gallery" className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center text-primary-400 mb-12">Galeri Kegiatan</h2>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {galleryItems.map(item => (
+              <div key={item.id} className="relative group overflow-hidden rounded-lg shadow-md">
+                <img 
+                  src={item.image} 
+                  alt={item.title} 
+                  className="w-full h-64 object-cover transform group-hover:scale-105 transition duration-300"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-75 transition duration-300 ">
+                  <h3 className="text-white text-lg font-semibold">{item.title}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  };
+  
+  export default GallerySection;
