@@ -1,98 +1,241 @@
+import React, { useState, useEffect } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 const ProgramSection = () => {
-    const programs = [
-      {
-        id: 1,
-        name: "Muhammad Fadli",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        duration: "3 Bulan",
-        fee: "Rp 2.500.000",
-        schedule: "Senin & Rabu, 13.00 - 16.00 WITA"
-      },
-      {
-        id: 2,
-        name: "Adji Dwi Purnama Putra",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        duration: "2 Bulan",
-        fee: "Rp 3.000.000",
-        schedule: "Selasa & Kamis, 09.00 - 12.00 WITA"
-      },
-      {
-        id: 3,
-        name: "Moh. Fathir",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        duration: "4 Bulan",
-        fee: "Rp 4.000.000",
-        schedule: "Senin - Jumat, 18.00 - 20.00 WITA"
-      },
-      {
-        id: 4,
-        name: "Adzian Afif",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        duration: "3 Bulan",
-        fee: "Rp 3.500.000",
-        schedule: "Jumat & Sabtu, 08.00 - 12.00 WITA"
+  const [graduates, setGraduates] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch data from your API
+  useEffect(() => {
+    const fetchGraduates = async () => {
+      try {
+        const response = await fetch('https://maleo-be.onrender.com/lulus.json');
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        // Process the data
+        const graduateData = data
+          .filter(item => item["番号"] !== "番号") // Exclude the header row
+          .map(item => {
+            // Clean up dates by removing extra spaces and normalizing characters
+            const cleanInterviewDate = item["面接合格日"]
+              .replace(/\s+/g, ' ')
+              .replace(/　/g, ' ') // Replace full-width spaces with regular spaces
+              .trim();
+            
+            const cleanDepartureDate = item["日本への出発日"] 
+              ? item["日本への出発日"]
+                  .replace(/\s+/g, ' ')
+                  .replace(/　/g, ' ')
+                  .trim()
+              : null;
+            
+            // Extract Google Drive file ID from URL
+            let imageUrl = '/logo-maleo.jpg';
+            if (item["写真"] && item["写真"].includes('drive.google.com')) {
+              const match = item["写真"].match(/\/file\/d\/([^\/]+)/);
+              if (match && match[1]) {
+                imageUrl = `https://drive.google.com/thumbnail?id=${match[1]}&width=300&height=400`;
+              }
+            }
+            
+            return {
+              id: item["番号"],
+              name: item["名前"],
+              address: item["住所"],
+              company: item["会社名"],
+              interviewDate: cleanInterviewDate,
+              departureDate: cleanDepartureDate,
+              image: imageUrl
+            };
+          });
+          
+        setGraduates(graduateData);
+      } catch (err) {
+        console.error('Error fetching graduates:', err);
+        setError('Gagal memuat data lulusan. Silakan coba lagi nanti.');
+        
+        // Fallback data if API fails
+        setGraduates([
+          {
+            id: "1",
+            name: "MUHHAMAD FADLI",
+            address: "Dimana?",
+            company: "IGISHI KOGYO CO.,LTD",
+            interviewDate: "2024 年 11月 02日",
+            departureDate: "2025 年 4月 14日",
+            image: '/logo.png'
+          },
+          {
+            id: "4",
+            name: "ADZIAN AFIF",
+            address: null,
+            company: "YAMAMARU FUJI",
+            interviewDate: "2025 年 02月 07日",
+            departureDate: null,
+            image: '/logo.png'
+          }
+        ]);
+      } finally {
+        setLoading(false);
       }
-    ];
-  
+    };
+
+    fetchGraduates();
+  }, []);
+
+  // Carousel settings
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: graduates.length >= 4 ? 4 : graduates.length, // Adjust based on number of items
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: graduates.length >= 3 ? 3 : graduates.length,
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: graduates.length >= 2 ? 2 : graduates.length,
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
+
+  if (loading) {
     return (
-      <section id="program" className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Program Pelatihan</h2>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {programs.map(program => (
-              <div key={program.id} className="bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-3">{program.name}</h3>
-                  <p className="text-gray-600 mb-4">{program.description}</p>
-                  <div className="space-y-2">
-                    <div className="flex items-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <span className="text-gray-700">{program.duration}</span>
-                    </div>
-                    <div className="flex items-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <span className="text-gray-700">{program.fee}</span>
-                    </div>
-                    <div className="flex items-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      <span className="text-gray-700">{program.schedule}</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-gray-100 px-6 py-4">
-                  <button className="w-full bg-blue-600 text-white py-2 rounded-md font-medium hover:bg-blue-700 transition duration-300">
-                    Detail Program
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          <div className="bg-blue-50 p-6 rounded-lg">
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">Syarat dan Cara Pendaftaran</h3>
-            <ul className="list-disc pl-5 space-y-2 text-gray-700 mb-6">
-              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-              <li>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
-              <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</li>
-              <li>Nisi ut aliquip ex ea commodo consequat.</li>
-            </ul>
-            <a 
-              href="#daftar" 
-              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition duration-300"
-            >
-              Daftar Online Sekarang
-            </a>
-          </div>
+      <section id="graduates" className="py-20 bg-white">
+        <div className="container mx-auto px-4 text-center">
+          <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500 mb-4"></div>
+          <p>Memuat data lulusan...</p>
         </div>
       </section>
     );
-  };
-  
-  export default ProgramSection;
+  }
+
+  if (error) {
+    return (
+      <section id="graduates" className="py-20 bg-white">
+        <div className="container mx-auto px-4 text-center">
+          <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 max-w-2xl mx-auto">
+            <p>{error}</p>
+          </div>
+          <p className="text-gray-600">Menampilkan data contoh...</p>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section id="graduates" className="py-20 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">Lulusan Berprestasi Kami</h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Para siswa LPK yang telah berhasil lulus interview dan bekerja di perusahaan ternama
+          </p>
+        </div>
+        
+        {graduates.length > 0 ? (
+          <Slider {...settings} className="px-2">
+            {graduates.map(graduate => (
+              <div key={graduate.id} className="px-2 focus:outline-none">
+                <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 h-full flex flex-col">
+                  <div className="h-64 w-full overflow-hidden relative">
+                    <img 
+                      src={graduate.image} 
+                      alt={graduate.name}
+                      className="absolute inset-0 w-full h-full object-cover object-[10%_18%]"
+                      // style={{ maxHeight: '1280px' }}
+                      onError={(e) => {
+                        e.target.onerror = null; 
+                        e.target.src = "/logo-maleo.jpg";
+                      }}
+                    />
+                    {graduate.image === '/logo-maleo.jpg' && (
+                      <div className="absolute inset-0 flex items-center justify-center text-gray-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-20 w-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                  
+                  <div className="p-6 flex-grow">
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2">{graduate.name}</h3>
+                    {/* <p className="text-blue-600 font-medium mb-3">Magang Jepang</p> */}
+                    {/* <div className="flex items-center text-gray-600 mb-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      <span className="text-sm">Alamat: {graduate.address || "Belum ditentukan"}</span>
+                    </div> */}
+
+                    <div className="flex items-start text-gray-600 mb-3">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                      </svg>
+                      <span className="text-sm">{graduate.company}</span>
+                    </div>
+                    
+                    <div className="flex items-center text-gray-600 mb-3">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="text-sm">Lulus: {graduate.interviewDate}</span>
+                    </div>
+                    
+                    <div className="flex items-center text-gray-600 mb-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      <span className="text-sm">Berangkat: {graduate.departureDate || "Belum ditentukan"}</span>
+                    </div>
+                    
+                    
+                    <div className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm inline-flex items-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      Lulus Interview
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </Slider>
+        ) : (
+          <div className="text-center py-10">
+            <p className="text-gray-600">Tidak ada data lulusan yang tersedia</p>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+};
+
+export default ProgramSection;

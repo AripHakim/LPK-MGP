@@ -6,10 +6,12 @@ const Header = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalRef = useRef(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const [formData, setFormData] = useState({
     namaLengkap: '',
-    tempatLahir: '',
     tanggalLahir: '',
     jenisKelamin: '',
     pendidikanTerakhir: '',
@@ -57,24 +59,50 @@ const Header = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here (e.g., send to API)
-    console.log('Form submitted:', formData);
-    alert('Pendaftaran berhasil dikirim! Kami akan menghubungi Anda segera.');
-    setIsModalOpen(false);
-    // Reset form
-    setFormData({
-      namaLengkap: '',
-      tempatLahir: '',
-      tanggalLahir: '',
-      jenisKelamin: '',
-      pendidikanTerakhir: '',
-      alamatLengkap: '',
-      beratBadan: '',
-      tinggiBadan: '',
-      noHP: ''
-    });
+    setIsSubmitting(true);
+    setSubmitError('');
+    
+    try {
+      const response = await fetch('https://maleo-be.onrender.com/api/form/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setSubmitSuccess(true);
+      // Reset form after successful submission
+      setFormData({
+        namaLengkap: '',
+        tanggalLahir: '',
+        jenisKelamin: '',
+        pendidikanTerakhir: '',
+        alamatLengkap: '',
+        beratBadan: '',
+        tinggiBadan: '',
+        noHP: ''
+      });
+      
+      // Optionally close the modal after a delay
+      setTimeout(() => {
+        setIsModalOpen(false);
+        setSubmitSuccess(false);
+      }, 2000);
+      
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitError('Gagal mengirim formulir. Silakan coba lagi.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -99,6 +127,7 @@ const Header = () => {
               <li><a href="#home" className="text-center text-primary-300 hover:text-secondary hover:underline font-medium text-md">Beranda</a></li>
               <li><a href="#about" className="text-primary-300 hover:text-secondary hover:underline font-medium text-md">Tentang Kami</a></li>
               <li><a href="#organisasi" className="text-primary-300 hover:text-secondary hover:underline font-medium text-md">Struktur Organisasi</a></li>
+              <li><a href="#graduates" className="text-primary-300 hover:text-secondary hover:underline font-medium text-md">Lulusan</a></li>
               <li><a href="#contact" className="text-primary-300 hover:text-secondary hover:underline font-medium text-md">Kontak</a></li>
               <li>
                 <button
@@ -127,6 +156,7 @@ const Header = () => {
               <li><a href="#home" onClick={handleCloseMenu} className="text-gray-800 hover:text-secondary font-medium">Beranda</a></li>
               <li><a href="#about" onClick={handleCloseMenu} className="text-gray-800 hover:text-secondary font-medium">Tentang Kami</a></li>
               <li><a href="#organisasi" onClick={handleCloseMenu} className="text-gray-800 hover:text-secondary font-medium">Struktur Organisasi</a></li>
+              <li><a href="#graduates" className="text-primary-300 hover:text-secondary hover:underline font-medium text-md">Lulusan</a></li>
               <li><a href="#contact" onClick={handleCloseMenu} className="text-gray-800 hover:text-secondary font-medium">Kontak</a></li>
               <li>
                 <button
@@ -158,6 +188,20 @@ const Header = () => {
                 </button>
               </div>
 
+              {/* Success message */}
+              {submitSuccess && (
+                <div className="mb-4 p-4 bg-green-100 text-green-700 rounded-md">
+                  Pendaftaran berhasil dikirim!
+                </div>
+              )}
+
+              {/* Error message */}
+              {submitError && (
+                <div className="mb-4 p-4 bg-red-100 text-red-700 rounded-md">
+                  {submitError}
+                </div>
+              )}
+
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="namaLengkap" className="block text-sm font-medium text-gray-700 mb-1">
@@ -168,21 +212,6 @@ const Header = () => {
                     id="namaLengkap"
                     name="namaLengkap"
                     value={formData.namaLengkap}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary-500"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="tempatLahir" className="block text-sm font-medium text-gray-700 mb-1">
-                    Tempat Lahir <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="tempatLahir"
-                    name="tempatLahir"
-                    value={formData.tempatLahir}
                     onChange={handleInputChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary-500"
                     required
@@ -321,9 +350,10 @@ const Header = () => {
                 <div className="pt-4">
                   <button
                     type="submit"
-                    className="w-full bg-secondary-600 text-white py-2 px-4 rounded-md hover:bg-secondary-700 transition duration-300"
+                    disabled={isSubmitting}
+                    className={`w-full py-2 px-4 rounded-md ${isSubmitting ? 'bg-gray-400' : 'bg-secondary-600 hover:bg-secondary-700'} text-secondary-200 text-center font-medium text-sm hover:border hover:border-primary-600 transition duration-300`}
                   >
-                    Kirim Pendaftaran
+                    {isSubmitting ? 'Mengirim...' : 'Kirim Pendaftaran'}
                   </button>
                 </div>
               </form>

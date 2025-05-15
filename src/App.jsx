@@ -19,7 +19,7 @@ function App() {
               <HeroSection />
               <AboutSection />
               <OrganizationSection />
-              {/* <ProgramSection /> */}
+              <ProgramSection />
               <GallerySection />
               <ContactSection />
             </>

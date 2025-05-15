@@ -20,6 +20,7 @@ const Footer = () => {
               <li><a href="#home" className="text-primary-400 hover:text-white transition">Beranda</a></li>
               <li><a href="#about" className="text-primary-400 hover:text-white transition">Tentang Kami</a></li>
               <li><a href="#organisasi" className="text-primary-400 hover:text-white transition">Struktur Organisasi</a></li>
+              <li><a href="#graduates" className="text-primary-400 hover:text-white transition">Lulusan</a></li>
               <li><a href="#contact" className="text-primary-400 hover:text-white transition">Kontak</a></li>
             </ul>
           </div>
