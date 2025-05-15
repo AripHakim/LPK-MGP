@@ -76,7 +76,7 @@ const HeroSection = () => {
     setSubmitError('');
     
     try {
-      const response = await fetch('https://maleo-be.onrender.com/api/form/register', {
+      const response = await fetch('https://maleo-be.onrender.com/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
