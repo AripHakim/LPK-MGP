@@ -37,6 +37,18 @@ const Header = () => {
     };
   }, [isModalOpen]);
 
+  // Auto-close error/success messages after 3 seconds
+  useEffect(() => {
+    let timer;
+    if (submitError || submitSuccess) {
+      timer = setTimeout(() => {
+        setSubmitError('');
+        setSubmitSuccess(false);
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [submitError, submitSuccess]);
+
 
   const handleToggle = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
