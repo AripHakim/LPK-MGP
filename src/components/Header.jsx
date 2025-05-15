@@ -174,6 +174,22 @@ const Header = () => {
       {/* Registration Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-opacity-10 backdrop-blur-sm flex items-center justify-center z-50 p-4 m-2">
+          {/* Toast Notifications */}
+          {submitSuccess && (
+            <div className="fixed top-4 right-4 z-50 animate-fade-in">
+              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
+                <span className="block sm:inline">Pendaftaran berhasil dikirim!</span>
+              </div>
+            </div>
+          )}
+          
+          {submitError && (
+            <div className="fixed top-4 right-4 z-50 animate-fade-in">
+              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+                <span className="block sm:inline">{submitError}</span>
+              </div>
+            </div>
+          )}
           <div ref={modalRef} className="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto animate-fade-in">
             <div className="p-6">
               <div className="flex justify-between items-center mb-4">
@@ -187,20 +203,6 @@ const Header = () => {
                   </svg>
                 </button>
               </div>
-
-              {/* Success message */}
-              {submitSuccess && (
-                <div className="mb-4 p-4 bg-green-100 text-green-700 rounded-md">
-                  Pendaftaran berhasil dikirim!
-                </div>
-              )}
-
-              {/* Error message */}
-              {submitError && (
-                <div className="mb-4 p-4 bg-red-100 text-red-700 rounded-md">
-                  {submitError}
-                </div>
-              )}
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
