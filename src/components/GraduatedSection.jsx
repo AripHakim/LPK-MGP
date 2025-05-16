@@ -16,7 +16,7 @@ const GraduatedSection = ({ id }) => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        const graduateData = data
+        const cleanData = data
           .filter(item => item["番号"] !== "番号") 
           .map(item => {
             const cleanInterviewDate = item["面接合格日"]
@@ -31,11 +31,14 @@ const GraduatedSection = ({ id }) => {
                   .trim()
               : null;
             
+            // Improved image URL handling
             let imageUrl = '/logo.png';
             if (item["写真"] && item["写真"].includes('drive.google.com')) {
-              const match = item["写真"].match(/\/file\/d\/([^\/]+)/);
+              const match = item["写真"].match(/\/(?:file\/d\/|open\?id=)([\w-]+)/);
               if (match && match[1]) {
-                imageUrl = `https://drive.google.com/thumbnail?id=${match[1]}&width=300&height=400`;
+                imageUrl = `https://drive.google.com/thumbnail?id=${match[1]}&sz=w300-h400`;
+              } else {
+                console.warn("Couldn't extract Google Drive ID from:", item["写真"]);
               }
             }
             
