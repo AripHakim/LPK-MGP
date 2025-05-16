@@ -1,42 +1,36 @@
 import { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import Logo from '../assets/logo.png';
+import RegistrationModal from './RegistrationModal';
 
 const Header = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const modalRef = useRef(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [submitError, setSubmitError] = useState('');
-
-  const [formData, setFormData] = useState({
-    namaLengkap: '',
-    tanggalLahir: '',
-    jenisKelamin: '',
-    pendidikanTerakhir: '',
-    alamatLengkap: '',
-    beratBadan: '',
-    tinggiBadan: '',
-    noHP: ''
-  });
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        setIsModalOpen(false);
+    const handleHashLink = () => {
+      try {
+        if (window.location.hash) {
+          const id = window.location.hash.substring(1);
+          const element = document.getElementById(id);
+          if (element) {
+            const headerHeight = document.querySelector('header')?.offsetHeight || 0;
+            const offsetPosition = element.offsetTop - headerHeight;
+            
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }
+      } catch (error) {
+        console.error('Error handling hash link:', error);
       }
     };
-
-    if (isModalOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isModalOpen]);
-
+  
+    const timeoutId = setTimeout(handleHashLink, 100);
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   const handleToggle = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
@@ -51,88 +45,82 @@ const Header = () => {
     handleCloseMenu();
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitError('');
-    
-    try {
-      const response = await fetch('https://maleo-be.onrender.com/api/form/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      setSubmitSuccess(true);
-      // Reset form after successful submission
-      setFormData({
-        namaLengkap: '',
-        tanggalLahir: '',
-        jenisKelamin: '',
-        pendidikanTerakhir: '',
-        alamatLengkap: '',
-        beratBadan: '',
-        tinggiBadan: '',
-        noHP: ''
-      });
-      
-      // Optionally close the modal after a delay
-      setTimeout(() => {
-        setIsModalOpen(false);
-        setSubmitSuccess(false);
-      }, 2000);
-      
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitError('Gagal mengirim formulir. Silakan coba lagi.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <>
       <header className="bg-white shadow-md sticky top-0 z-50">
-        <div className="container mx-auto px-2 py-2 flex justify-between items-center">
-          {/* Logo & Title */}
+        <div className="container mx-auto md:px-4 md:py-4 px-2 py-2 flex justify-between items-center">
           <div className="flex items-center">
             <div className="text-white p-2 rounded-lg mr-3">
-              <img src={Logo} alt="logo maleo" className="h-12 w-12 lg:h-16 lg:w-16" />
+              <img src={Logo} alt="logo maleo" className="h-12 w-12 md:h-8 md:w-12 lg:h-16 lg:w-16" />
             </div>
             <div>
-              <h1 className="text-md md:text-xl lg:text-xl font-bold text-primary-400">
+              <h1 className="text-md md:text-sm lg:text-xl font-bold text-primary-400">
+              <HashLink 
+                  to="#home"
+                  smooth
+                >
                 MALEO GOGAKUIN PALU
+                </HashLink>
               </h1>
             </div>
           </div>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:block">
             <ul className="flex items-center space-x-8">
-              <li><a href="#home" className="text-center text-primary-300 hover:text-secondary hover:underline font-medium text-md">Beranda</a></li>
-              <li><a href="#about" className="text-primary-300 hover:text-secondary hover:underline font-medium text-md">Tentang Kami</a></li>
-              <li><a href="#organisasi" className="text-primary-300 hover:text-secondary hover:underline font-medium text-md">Struktur Organisasi</a></li>
-              <li><a href="#graduates" className="text-primary-300 hover:text-secondary hover:underline font-medium text-md">Lulusan</a></li>
-              <li><a href="#contact" className="text-primary-300 hover:text-secondary hover:underline font-medium text-md">Kontak</a></li>
+              <li>               
+                <HashLink 
+                  to="#home"
+                  smooth
+                  className="text-center text-primary-300 hover:text-secondary hover:underline font-medium lg:text-base md:text-sm"
+                >
+                  Beranda
+                </HashLink>
+              </li>
+              <li>
+              <HashLink 
+                  to="#about"
+                  smooth
+                  className="text-center text-primary-300 hover:text-secondary hover:underline font-medium lg:text-base md:text-sm"
+                >
+                Tentang Kami
+              </HashLink>
+              </li>
+              <li>
+              <HashLink 
+                  to="#organisasi"
+                  smooth
+                  className="text-center text-primary-300 hover:text-secondary hover:underline font-medium lg:text-base md:text-sm"
+                >
+                  Struktur Organisasi
+                </HashLink>
+              </li>
+              <li>
+              <HashLink 
+                  to="#lulusan"
+                  smooth
+                  className="text-center text-primary-300 hover:text-secondary hover:underline font-medium lg:text-base md:text-sm"
+                >
+                  Lulusan
+                </HashLink>
+              </li>
+              <li>
+              <HashLink 
+                  to="#galeri"
+                  smooth
+                  className="text-center text-primary-300 hover:text-secondary hover:underline font-medium lg:text-base md:text-sm"
+                >
+                  Galeri
+                </HashLink>
+              </li>
+              <li>
+              <HashLink to="#contact" smooth className="text-center text-primary-300 hover:text-secondary hover:underline font-medium lg:text-base md:text-sm">
+                  Kontak
+              </HashLink>
+              </li>
               <li>
                 <button
                   onClick={handleModalToggle}
-                  className="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-white hover:text-secondary hover:border hover:border-secondary-600 transition duration-300"
+                  className="bg-secondary text-white lg:px-6 lg:py-3 md:px-2 md:py-0 rounded-lg hover:bg-white hover:text-secondary hover:border hover:border-secondary-600 transition duration-300"
                 >
                   Daftar Sekarang
                 </button>
@@ -140,7 +128,6 @@ const Header = () => {
             </ul>
           </nav>
 
-          {/* Mobile Menu Button */}
           <button onClick={handleToggle} className="md:hidden text-gray-800">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
               viewBox="0 0 24 24" stroke="currentColor">
@@ -149,15 +136,69 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <nav className="md:hidden bg-white shadow-md">
             <ul className="flex flex-col items-end p-8 space-y-4 py-8">
-              <li><a href="#home" onClick={handleCloseMenu} className="text-gray-800 hover:text-secondary font-medium">Beranda</a></li>
-              <li><a href="#about" onClick={handleCloseMenu} className="text-gray-800 hover:text-secondary font-medium">Tentang Kami</a></li>
-              <li><a href="#organisasi" onClick={handleCloseMenu} className="text-gray-800 hover:text-secondary font-medium">Struktur Organisasi</a></li>
-              <li><a href="#graduates" className="text-primary-300 hover:text-secondary hover:underline font-medium text-md">Lulusan</a></li>
-              <li><a href="#contact" onClick={handleCloseMenu} className="text-gray-800 hover:text-secondary font-medium">Kontak</a></li>
+              <li>
+              <HashLink 
+                to="#home"
+                smooth
+                className="text-gray-800 hover:text-secondary font-medium"
+                onClick={handleCloseMenu}
+              >
+                  Beranda
+              </HashLink>
+              </li>
+              <li>
+                <HashLink
+                  to="#about"
+                  smooth
+                  className="text-gray-800 hover:text-secondary font-medium"
+                  onClick={handleCloseMenu}
+                >
+                  Tentang Kami
+                </HashLink>
+              </li>
+              <li>
+                <HashLink
+                  to="#organisasi"
+                  smooth
+                  className="text-gray-800 hover:text-secondary font-medium"
+                  onClick={handleCloseMenu}
+                >
+                  Struktur Organisasi
+                </HashLink>
+              </li>
+              <li>
+                <HashLink
+                  to="#lulusan"
+                  smooth
+                  className="text-gray-800 hover:text-secondary font-medium"
+                  onClick={handleCloseMenu}
+                >
+                  Lulusan
+                </HashLink>
+              </li>
+              <li>
+                <HashLink
+                  to="#galeri"
+                  smooth
+                  className="text-gray-800 hover:text-secondary font-medium"
+                  onClick={handleCloseMenu}
+                >
+                  Galeri
+                </HashLink>
+              </li>
+              <li>
+                <HashLink
+                  to="#contact"
+                  smooth
+                  className="text-gray-800 hover:text-secondary font-medium"
+                  onClick={handleCloseMenu}
+                >
+                  Kontak
+                </HashLink>
+              </li>
               <li>
                 <button
                   onClick={handleModalToggle}
@@ -171,196 +212,10 @@ const Header = () => {
         )}
       </header>
 
-      {/* Registration Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-opacity-10 backdrop-blur-sm flex items-center justify-center z-50 p-4 m-2">
-          <div ref={modalRef} className="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto animate-fade-in">
-            <div className="p-6">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold text-gray-800">Formulir Pendaftaran</h2>
-                <button 
-                  onClick={() => setIsModalOpen(false)}
-                  className="text-gray-500 hover:text-gray-700 transitioin-colors"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-
-              {/* Success message */}
-              {submitSuccess && (
-                <div className="mb-4 p-4 bg-green-100 text-green-700 rounded-md">
-                  Pendaftaran berhasil dikirim!
-                </div>
-              )}
-
-              {/* Error message */}
-              {submitError && (
-                <div className="mb-4 p-4 bg-red-100 text-red-700 rounded-md">
-                  {submitError}
-                </div>
-              )}
-
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="namaLengkap" className="block text-sm font-medium text-gray-700 mb-1">
-                    Nama Lengkap <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="namaLengkap"
-                    name="namaLengkap"
-                    value={formData.namaLengkap}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary-500"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="tanggalLahir" className="block text-sm font-medium text-gray-700 mb-1">
-                    Tanggal Lahir <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="date"
-                    id="tanggalLahir"
-                    name="tanggalLahir"
-                    value={formData.tanggalLahir}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary-500"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Jenis Kelamin <span className="text-red-500">*</span>
-                  </label>
-                  <div className="space-y-2">
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="jenisKelamin"
-                        value="Laki-laki"
-                        checked={formData.jenisKelamin === 'Laki-laki'}
-                        onChange={handleInputChange}
-                        className="h-4 w-4 text-secondary-600 focus:ring-secondary-500 border-gray-300"
-                        required
-                      />
-                      <span className="ml-2 text-gray-700">Laki-laki</span>
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="jenisKelamin"
-                        value="Perempuan"
-                        checked={formData.jenisKelamin === 'Perempuan'}
-                        onChange={handleInputChange}
-                        className="h-4 w-4 text-secondary-600 focus:ring-secondary-500 border-gray-300"
-                      />
-                      <span className="ml-2 text-gray-700">Perempuan</span>
-                    </label>
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="pendidikanTerakhir" className="block text-sm font-medium text-gray-700 mb-1">
-                    Pendidikan Terakhir <span className="text-red-500">*</span>
-                  </label>
-                  <select
-                    id="pendidikanTerakhir"
-                    name="pendidikanTerakhir"
-                    value={formData.pendidikanTerakhir}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary-500"
-                    required
-                  >
-                    <option value="">Pilih Pendidikan</option>
-                    <option value="SD">SD</option>
-                    <option value="SMP">SMP</option>
-                    <option value="SMA/SMK">SMA/SMK</option>
-                    <option value="D3">D3</option>
-                    <option value="S1">S1</option>
-                    <option value="S2">S2</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label htmlFor="alamatLengkap" className="block text-sm font-medium text-gray-700 mb-1">
-                    Alamat Lengkap <span className="text-red-500">*</span>
-                  </label>
-                  <textarea
-                    id="alamatLengkap"
-                    name="alamatLengkap"
-                    rows="3"
-                    value={formData.alamatLengkap}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary-500"
-                    required
-                  ></textarea>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="beratBadan" className="block text-sm font-medium text-gray-700 mb-1">
-                      Berat Badan (kg) <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="number"
-                      id="beratBadan"
-                      name="beratBadan"
-                      value={formData.beratBadan}
-                      onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary-500"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="tinggiBadan" className="block text-sm font-medium text-gray-700 mb-1">
-                      Tinggi Badan (cm) <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="number"
-                      id="tinggiBadan"
-                      name="tinggiBadan"
-                      value={formData.tinggiBadan}
-                      onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary-500"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="noHP" className="block text-sm font-medium text-gray-700 mb-1">
-                    No. Handphone/WhatsApp <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="tel"
-                    id="noHP"
-                    name="noHP"
-                    value={formData.noHP}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary-500"
-                    required
-                  />
-                </div>
-
-                <div className="pt-4">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className={`w-full py-2 px-4 rounded-md ${isSubmitting ? 'bg-gray-400' : 'bg-secondary-600 hover:bg-secondary-700'} text-secondary-200 text-center font-medium text-sm hover:border hover:border-primary-600 transition duration-300`}
-                  >
-                    {isSubmitting ? 'Mengirim...' : 'Kirim Pendaftaran'}
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      )}
+      <RegistrationModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </>
   );
 };

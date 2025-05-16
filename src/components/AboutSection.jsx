@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from 'react';
 
-const AboutSection = () => {
+const AboutSection = ({ id }) => {
   const [graduates, setGraduates] = useState([]);
 //   const [participants, setParticipans] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Data statis untuk bagian lainnya
   const participants = 100;
   const staffCount = 7;
   const workFields = [
+    "CareGiver (Perawat Lansia)",
     "Konstruksi",
     "Perikanan",
     "Pertanian",
     "Pengolahan Makanan",
-    "Peternakan",
-    "CareGiver (Perawat Lansia)"
+    "Peternakan"
   ];
   const benefits = [
     "Ada Dana Talangan",
@@ -31,17 +30,14 @@ const AboutSection = () => {
         if (!response.ok) throw new Error('Gagal memuat data');
         
         const data = await response.json();
-        // Filter out header row (where 番号 === "番号")
         const filteredData = data.filter(item => item["番号"] !== "番号");
         setGraduates(filteredData);
       } catch (err) {
         console.error("Error:", err);
         setError(err.message);
-        // Fallback data jika API gagal
         setGraduates([
           { "番号": "1", "名前": "MUHHAMAD FADLI" },
           { "番号": "2", "名前": "AJI DWI PURNAMA PUTRA" },
-          // ...data fallback lainnya
         ]);
       } finally {
         setLoading(false);
@@ -52,11 +48,10 @@ const AboutSection = () => {
   }, []);
 
   return (
-    <section id="about" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <section id={id} className="py-20 bg-white">
+      <div className="container mx-auto px-4 md:px-1">
         <h2 className="text-3xl font-bold text-center text-primary-400 mb-12">Tentang Kami</h2>
         <div className="grid md:grid-cols-3 gap-8">
-          {/* Card Statistik */}
           <div className="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-[0_0_20px_#F6B211] transition-shadow duration-300">
             <div className="flex items-center gap-3 mb-4">
               <div className="bg-secondary w-12 h-12 rounded-full flex items-center justify-center shrink-0">                
@@ -72,7 +67,6 @@ const AboutSection = () => {
                 </p>
               </div>
             </div>
-            
             <div className="flex items-center gap-3 mb-4">
               <div className="bg-secondary w-12 h-12 rounded-full flex items-center justify-center shrink-0">                
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -91,8 +85,7 @@ const AboutSection = () => {
                   </p>
                 )}
               </div>
-            </div>
-            
+            </div>          
             <div className="flex items-center gap-3 mb-4">
               <div className="bg-secondary w-12 h-12 rounded-full flex items-center justify-center shrink-0">                
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -107,8 +100,6 @@ const AboutSection = () => {
               </div>
             </div>
           </div>
-          
-          {/* Card Bidang Kerja */}
           <div className="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-[0_0_20px_#F6B211] transition-shadow duration-300">
             <div className="flex items-center gap-3 mb-4">
               <div className="bg-secondary w-12 h-12 rounded-full flex items-center justify-center shrink-0">
@@ -124,8 +115,6 @@ const AboutSection = () => {
               ))}
             </ul>
           </div>
-
-          {/* Card Keuntungan */}
           <div className="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-[0_0_20px_#F6B211] transition-shadow duration-300">
             <div className="flex items-center gap-3 mb-4">
               <div className="bg-secondary w-12 h-12 rounded-full flex items-center justify-center shrink-0">

@@ -1,4 +1,4 @@
-const GallerySection = () => {
+const GallerySection = ({id}) => {
     const galleryItems = [
       {
         id: 1,
@@ -33,7 +33,7 @@ const GallerySection = () => {
     ];
   
     return (
-      <section id="gallery" className="py-20 bg-gray-50">
+      <section id={id} className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-primary-400 mb-12">Galeri Kegiatan</h2>
           

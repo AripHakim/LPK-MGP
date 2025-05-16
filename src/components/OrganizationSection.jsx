@@ -1,9 +1,8 @@
-const OrganizationSection = () => {
+const OrganizationSection = ({id}) => {
     return (
-      <section id="organisasi" className="py-20 bg-gray-50">
+      <section id={id} className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-primary-400 mb-12">Struktur Organisasi</h2>
-          
           <div className="bg-white p-6 rounded-lg shadow-lg mb-8">
             <div className="flex justify-center mb-8">
               <div className="text-center">

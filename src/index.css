@@ -57,6 +57,16 @@ html, body {
   overflow-x: hidden;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* Sesuaikan dengan tinggi header Anda */
+}
+
+section[id] {
+  position: relative;
+  scroll-margin-top: 100px; /* Sesuaikan dengan tinggi header Anda */
+}
+
 /* Untuk mencegah scrolling saat menu mobile terbuka */
 body.mobile-menu-open {
   overflow: hidden;

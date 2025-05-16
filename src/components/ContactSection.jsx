@@ -4,13 +4,12 @@ import emailjs from 'emailjs-com';
 import L from 'leaflet';
 
 const customIcon = L.icon({
-  iconUrl: '/pin.png', // ganti dengan path ke ikon kamu (bisa .png atau .svg)
-  iconSize: [50, 50],  // sesuaikan ukuran
-  iconAnchor: [16, 32], // titik anchor (biasanya bagian bawah icon)
-  popupAnchor: [0, -32], // posisi popup relatif terhadap ikon
+  iconUrl: '/pin.png', 
+  iconSize: [50, 50],  
+  iconAnchor: [16, 32], 
+  popupAnchor: [0, -32],
 });
 
-// Dynamically import Leaflet to avoid SSR issues
 const MapWithNoSSR = dynamic(
   () => import('react-leaflet').then((mod) => {
     const { MapContainer, TileLayer, Marker, Popup } = mod;
@@ -34,7 +33,7 @@ const MapWithNoSSR = dynamic(
                   style={{
                     width: '300px',
                     height: '150px',
-                    maxWidth: '1550px',  // batas maksimum tampilan
+                    maxWidth: '1550px',  
                     borderRadius: '0.5rem',
                     marginTop: '0.5rem'
                   }} 
@@ -49,7 +48,7 @@ const MapWithNoSSR = dynamic(
   { ssr: false }
 );
 
-const ContactSection = () => {
+const ContactSection = ({id}) => {
   const mapCenter = [-0.8879073, 119.8654517];
   const mapZoom = 17;
 
@@ -70,12 +69,11 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Ganti dengan ID service, template, dan user Anda dari EmailJS
     emailjs.send(
-      'service_l7jma5l', // SERVICE ID
-      'template_eqrf5hr', // TEMPLATE ID
+      'service_l7jma5l', 
+      'template_eqrf5hr', 
       formData,
-      'kZyf2wOhG85ZaVBGZ' // USER ID
+      'kZyf2wOhG85ZaVBGZ' 
     )
     .then((response) => {
       alert('Pesan terkirim! Kami akan segera menghubungi Anda.');
@@ -89,14 +87,11 @@ const ContactSection = () => {
     });
   };
 
-
   return (
-    <section id="contact" className="py-20 bg-gray-50 ">
-      <div className="container lg:mx-auto lg:px-4">
+    <section id={id} className="py-20 bg-gray-50">
+      <div className="container md:mx-auto md:px-4 lg:mx-auto lg:px-4">
         <h2 className="text-3xl font-bold text-center text-primary-400 mb-12">Kontak Kami</h2>
-        
         <div className="grid md:grid-cols-2 gap-8">
-          {/* Informasi Kontak */}
           <div className="space-y-8">
             <div className="bg-white p-8 rounded-lg shadow-md">
               <h3 className="text-xl font-semibold text-primary-300 mb-6">Informasi Kontak</h3>
@@ -127,8 +122,7 @@ const ContactSection = () => {
                     Lihat Lokasi di Google Maps
                   </a>
                   </div>
-                </div>
-                
+                </div> 
                 <div className="flex items-start">
                   <div className="bg-secondary p-2 rounded-full mr-4">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -148,7 +142,6 @@ const ContactSection = () => {
                     </a>
                   </div>
                 </div>
-                
                 <div className="flex items-start">
                   <div className="bg-secondary p-2 rounded-full mr-4 items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -157,22 +150,16 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <h4 className="font-medium text-primary-300">Email</h4>
-                    <a 
-                      href="mailto:lpk.maleogogakuinpalu@gmail.com" 
-                      className="text-primary-500 hover:underline"
-                    >
+                    <a href="mailto:lpk.maleogogakuinpalu@gmail.com" className="text-primary-500 hover:underline">
                       lpk.maleogogakuinpalu@gmail.com                  
                     </a>
                   </div>
                 </div>          
               </div>
             </div>     
-          </div>
-          
-          {/* Formulir Kontak */}
+          </div>          
           <div className="bg-white p-8 rounded-lg shadow-md">
             <h3 className="text-xl font-semibold text-primary-300 mb-6">Formulir Kontak</h3>
-            
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">

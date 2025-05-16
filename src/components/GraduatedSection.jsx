@@ -3,31 +3,25 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const ProgramSection = () => {
+const GraduatedSection = ({ id }) => {
   const [graduates, setGraduates] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch data from your API
   useEffect(() => {
     const fetchGraduates = async () => {
       try {
         const response = await fetch('https://maleo-be.onrender.com/lulus.json');
-        
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        
         const data = await response.json();
-        
-        // Process the data
         const graduateData = data
-          .filter(item => item["番号"] !== "番号") // Exclude the header row
+          .filter(item => item["番号"] !== "番号") 
           .map(item => {
-            // Clean up dates by removing extra spaces and normalizing characters
             const cleanInterviewDate = item["面接合格日"]
               .replace(/\s+/g, ' ')
-              .replace(/　/g, ' ') // Replace full-width spaces with regular spaces
+              .replace(/　/g, ' ') 
               .trim();
             
             const cleanDepartureDate = item["日本への出発日"] 
@@ -37,7 +31,6 @@ const ProgramSection = () => {
                   .trim()
               : null;
             
-            // Extract Google Drive file ID from URL
             let imageUrl = '/logo-maleo.jpg';
             if (item["写真"] && item["写真"].includes('drive.google.com')) {
               const match = item["写真"].match(/\/file\/d\/([^\/]+)/);
@@ -62,7 +55,6 @@ const ProgramSection = () => {
         console.error('Error fetching graduates:', err);
         setError('Gagal memuat data lulusan. Silakan coba lagi nanti.');
         
-        // Fallback data if API fails
         setGraduates([
           {
             id: "1",
@@ -91,12 +83,11 @@ const ProgramSection = () => {
     fetchGraduates();
   }, []);
 
-  // Carousel settings
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: graduates.length >= 4 ? 4 : graduates.length, // Adjust based on number of items
+    slidesToShow: graduates.length >= 4 ? 4 : graduates.length,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
@@ -127,7 +118,7 @@ const ProgramSection = () => {
 
   if (loading) {
     return (
-      <section id="graduates" className="py-20 bg-white">
+      <section id={id} className="py-20 bg-white">
         <div className="container mx-auto px-4 text-center">
           <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500 mb-4"></div>
           <p>Memuat data lulusan...</p>
@@ -138,7 +129,7 @@ const ProgramSection = () => {
 
   if (error) {
     return (
-      <section id="graduates" className="py-20 bg-white">
+      <section id={id} className="py-20 bg-white">
         <div className="container mx-auto px-4 text-center">
           <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 max-w-2xl mx-auto">
             <p>{error}</p>
@@ -150,7 +141,7 @@ const ProgramSection = () => {
   }
 
   return (
-    <section id="graduates" className="py-20 bg-white">
+    <section id={id} className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-800 mb-4">Lulusan Berprestasi Kami</h2>
@@ -169,7 +160,6 @@ const ProgramSection = () => {
                       src={graduate.image} 
                       alt={graduate.name}
                       className="absolute inset-0 w-full h-full object-cover object-[10%_18%]"
-                      // style={{ maxHeight: '1280px' }}
                       onError={(e) => {
                         e.target.onerror = null; 
                         e.target.src = "/logo-maleo.jpg";
@@ -186,15 +176,6 @@ const ProgramSection = () => {
                   
                   <div className="p-6 flex-grow">
                     <h3 className="text-xl font-semibold text-gray-800 mb-2">{graduate.name}</h3>
-                    {/* <p className="text-blue-600 font-medium mb-3">Magang Jepang</p> */}
-                    {/* <div className="flex items-center text-gray-600 mb-4">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      <span className="text-sm">Alamat: {graduate.address || "Belum ditentukan"}</span>
-                    </div> */}
-
                     <div className="flex items-start text-gray-600 mb-3">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -238,4 +219,4 @@ const ProgramSection = () => {
   );
 };
 
-export default ProgramSection;
+export default GraduatedSection;
