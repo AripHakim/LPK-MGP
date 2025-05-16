@@ -11,7 +11,8 @@ const GraduatedSection = ({ id }) => {
   useEffect(() => {
     const fetchGraduates = async () => {
       try {
-        const response = await fetch('https://maleo-be.onrender.com/lulus.json');
+        // const response = await fetch('https://maleo-be.onrender.com/lulus.json');
+        const response = await fetch('https://maleo-be.onrender.com/api/lulus');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
