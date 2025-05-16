@@ -15,14 +15,18 @@ const GraduatedSection = ({ id }) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const data = await response.json();
+        const responseData = await response.json();
+        const data = responseData.data || [];
+
         const cleanData = data
           .filter(item => item["番号"] !== "番号") 
           .map(item => {
             const cleanInterviewDate = item["面接合格日"]
-              .replace(/\s+/g, ' ')
-              .replace(/　/g, ' ') 
-              .trim();
+              ? item["面接合格日"]
+                  .replace(/\s+/g, ' ')
+                  .replace(/　/g, ' ') 
+                  .trim()
+              : '';
             
             const cleanDepartureDate = item["日本への出発日"] 
               ? item["日本への出発日"]
@@ -31,7 +35,6 @@ const GraduatedSection = ({ id }) => {
                   .trim()
               : null;
             
-            // Improved image URL handling
             let imageUrl = '/logo.png';
             if (item["写真"] && item["写真"].includes('drive.google.com')) {
               const match = item["写真"].match(/\/(?:file\/d\/|open\?id=)([\w-]+)/);
@@ -45,7 +48,7 @@ const GraduatedSection = ({ id }) => {
             return {
               id: item["番号"],
               name: item["名前"],
-              address: item["住所"],
+              address: item["住所"] || null,
               company: item["会社名"],
               interviewDate: cleanInterviewDate,
               departureDate: cleanDepartureDate,
@@ -53,7 +56,7 @@ const GraduatedSection = ({ id }) => {
             };
           });
           
-        setGraduates(graduateData);
+        setGraduates(cleanData); 
       } catch (err) {
         console.error('Error fetching graduates:', err);
         setError('Gagal memuat data lulusan. Silakan coba lagi nanti.');
@@ -62,7 +65,7 @@ const GraduatedSection = ({ id }) => {
           {
             id: "1",
             name: "MUHHAMAD FADLI",
-            address: "Dimana?",
+            address: null,
             company: "IGISHI KOGYO CO.,LTD",
             interviewDate: "2024 年 11月 02日",
             departureDate: "2025 年 4月 14日",
@@ -85,6 +88,7 @@ const GraduatedSection = ({ id }) => {
 
     fetchGraduates();
   }, []);
+
 
   const settings = {
     dots: true,
