@@ -1,6 +1,5 @@
-import { useEffect } from 'react'; // Tambahkan import useEffect
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
@@ -9,48 +8,53 @@ import GraduatedSection from './components/GraduatedSection';
 import GallerySection from './components/GallerySection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+import BackToTopButton from './components/BackToTopButton';
 
+// Komponen ScrollToTop yang tidak mengganggu BackToTopButton
 function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Hanya reset scroll jika bukan hash link
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
   }, [pathname]);
 
   return null;
 }
 
-
 function App() {
   useEffect(() => {
     const handleHashLink = () => {
-      try {
-        if (window.location.hash) {
-          const id = window.location.hash.substring(1);
-          const element = document.getElementById(id);
-          if (element) {
-            const headerHeight = document.querySelector('header')?.offsetHeight || 0;
-            const offsetPosition = element.offsetTop - headerHeight;
-            
+      const hash = window.location.hash;
+      if (hash) {
+        const id = hash.substring(1);
+        const element = document.getElementById(id);
+        if (element) {
+          const headerHeight = document.querySelector('header')?.offsetHeight || 0;
+          const offsetPosition = element.offsetTop - headerHeight;
+          
+          // Gunakan requestAnimationFrame untuk menghindari konflik
+          requestAnimationFrame(() => {
             window.scrollTo({
               top: offsetPosition,
               behavior: 'smooth'
             });
-          }
+          });
         }
-      } catch (error) {
-        console.error('Error handling hash link:', error);
       }
     };
-  
-    const timeoutId = setTimeout(handleHashLink, 100);
+
+    // Timer diperpendek dan dijamin cleanup
+    const timeoutId = setTimeout(handleHashLink, 50);
     return () => clearTimeout(timeoutId);
   }, []);
 
   return (
     <Router>
       <ScrollToTop />
-      <div className="font-sans bg-gray-50">
+      <div className="font-sans bg-gray-50 min-h-screen">
         <Header />
         <Routes>
           <Route path="/" element={
@@ -65,6 +69,7 @@ function App() {
           } />
         </Routes>
         <Footer />
+        <BackToTopButton />
       </div>
     </Router>
   );

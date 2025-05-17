@@ -1,39 +1,119 @@
 @import "tailwindcss";
+/* @import "tailwindcss/components";
+@import "tailwindcss/utilities"; */
 
+/* ==================== */
+/* Theme Configuration */
+/* ==================== */
 @theme {
-    --color-primary: #2238A6;
-    --color-primary-100: #070b21;
-    --color-primary-200: #0e1642;
-    --color-primary-300: #142163;
-    --color-primary-400: #1b2d84;
-    --color-primary-500: #2238a6;
-    --color-primary-600: #304cd5;
-    --color-primary-700: #6479df;
-    --color-primary-800: #98a5ea;
-    --color-primary-900: #cbd2f4;
-    --color-secondary: #F6B211;
-    --color-secondary-100: #332402;
-    --color-secondary-200: #664904;
-    --color-secondary-300: #9a6d06;
-    --color-secondary-400: #cd9207;
-    --color-secondary-500: #f6b211;
-    --color-secondary-600: #f8c242;
-    --color-secondary-700: #fad171;
-    --color-secondary-800: #fce0a1;
-    --color-secondary-900: #fdf0d0;
-    --color-maize: #F7E95D;
-    --color-maize-100: #413c03;
-    --color-maize-200: #837806;
-    --color-maize-300: #c4b409;
-    --color-maize-400: #f4e21d;
-    --color-maize-500: #f7e95d;
-    --color-maize-600: #f9ef7e;
-    --color-maize-700: #faf39f;
-    --color-maize-800: #fcf7bf;
-    --color-maize-900: #fdfbdf;
+  /* Primary Color Palette */
+  --color-primary: #2238A6;
+  --color-primary-100: #070b21;
+  --color-primary-200: #0e1642;
+  --color-primary-300: #142163;
+  --color-primary-400: #1b2d84;
+  --color-primary-500: #2238a6;
+  --color-primary-600: #304cd5;
+  --color-primary-700: #6479df;
+  --color-primary-800: #98a5ea;
+  --color-primary-900: #cbd2f4;
+
+  /* Secondary Color Palette */
+  --color-secondary: #F6B211;
+  --color-secondary-100: #332402;
+  --color-secondary-200: #664904;
+  --color-secondary-300: #9a6d06;
+  --color-secondary-400: #cd9207;
+  --color-secondary-500: #f6b211;
+  --color-secondary-600: #f8c242;
+  --color-secondary-700: #fad171;
+  --color-secondary-800: #fce0a1;
+  --color-secondary-900: #fdf0d0;
+
+  /* Maize Color Palette */
+  --color-maize: #F7E95D;
+  --color-maize-100: #413c03;
+  --color-maize-200: #837806;
+  --color-maize-300: #c4b409;
+  --color-maize-400: #f4e21d;
+  --color-maize-500: #f7e95d;
+  --color-maize-600: #f9ef7e;
+  --color-maize-700: #faf39f;
+  --color-maize-800: #fcf7bf;
+  --color-maize-900: #fdfbdf;
+}
+/* ==================== */
+/* Base Styles (Modified) */
+/* ==================== */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+  height: 100%;
+  width: 100%;
+  /* Changed overflow handling */
+  overflow-x: clip; /* Safer than hidden for sticky elements */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  position: relative;
+  overflow-x: visible; /* Crucial for sticky elements */
+}
+
+/* ==================== */
+/* Navbar Sticky Fix (New) */
+/* ==================== */
+header.sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  /* Hardware acceleration */
+  transform: translate3d(0,0,0);
+  -webkit-transform: translate3d(0,0,0);
+}
+
+/* ==================== */
+/* Mobile Styles (Fixed) */
+/* ==================== */
+@media (max-width: 768px) {
+  html {
+    width: 100vw;
+    overflow-x: clip;
   }
   
-  /* Tambahkan di file CSS global Anda */
+  /* White space fix that doesn't break sticky */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100vh;
+    background: white;
+    z-index: -1; /* Behind content */
+  }
+
+  body.mobile-menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+}
+
+/* ==================== */
+/* Existing Styles (Preserved) */
+/* ==================== */
+section[id] {
+  position: relative;
+  scroll-margin-top: 100px;
+}
+
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
+
 @keyframes slideDown {
   from {
     transform: translateY(-20px);
@@ -45,42 +125,27 @@
   }
 }
 
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(-10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
 .animate-slideDown {
   animation: slideDown 0.3s ease-out forwards;
-}
-
-/* Pastikan html dan body memiliki height 100% */
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 100px; /* Sesuaikan dengan tinggi header Anda */
-}
-
-section[id] {
-  position: relative;
-  scroll-margin-top: 100px; /* Sesuaikan dengan tinggi header Anda */
-}
-
-/* Untuk mencegah scrolling saat menu mobile terbuka */
-body.mobile-menu-open {
-  overflow: hidden;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in {
   animation: fadeIn 0.2s ease-out forwards;
 }
 
-.backdrop-blur-sm {
-  backdrop-filter: blur(4px);
+@media print {
+  html, body {
+    height: auto;
+  }
 }

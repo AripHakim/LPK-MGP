@@ -99,7 +99,7 @@ const ContactSection = ({id}) => {
               <div className="space-y-6">
 
               <div className="flex items-start">
-                  <div className="h-56 md:h-64 w-full z-20">
+                  <div className="h-56 md:h-64 w-full z-30">
                     <MapWithNoSSR center={mapCenter} zoom={mapZoom} />
                   </div>
                 </div>

@@ -11,18 +11,22 @@ const GraduatedSection = ({ id }) => {
   useEffect(() => {
     const fetchGraduates = async () => {
       try {
-        const response = await fetch('https://maleo-be.onrender.com/lulus.json');
+        const response = await fetch('https://maleo-be.onrender.com/api/lulus');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const data = await response.json();
-        const graduateData = data
+        const responseData = await response.json();
+        const data = responseData.data || [];
+
+        const cleanData = data
           .filter(item => item["番号"] !== "番号") 
           .map(item => {
             const cleanInterviewDate = item["面接合格日"]
-              .replace(/\s+/g, ' ')
-              .replace(/　/g, ' ') 
-              .trim();
+              ? item["面接合格日"]
+                  .replace(/\s+/g, ' ')
+                  .replace(/　/g, ' ') 
+                  .trim()
+              : '';
             
             const cleanDepartureDate = item["日本への出発日"] 
               ? item["日本への出発日"]
@@ -31,18 +35,20 @@ const GraduatedSection = ({ id }) => {
                   .trim()
               : null;
             
-            let imageUrl = '/logo-maleo.jpg';
+            let imageUrl = '/logo.png';
             if (item["写真"] && item["写真"].includes('drive.google.com')) {
-              const match = item["写真"].match(/\/file\/d\/([^\/]+)/);
+              const match = item["写真"].match(/\/(?:file\/d\/|open\?id=)([\w-]+)/);
               if (match && match[1]) {
-                imageUrl = `https://drive.google.com/thumbnail?id=${match[1]}&width=300&height=400`;
+                imageUrl = `https://drive.google.com/thumbnail?id=${match[1]}&sz=w300-h400`;
+              } else {
+                console.warn("Couldn't extract Google Drive ID from:", item["写真"]);
               }
             }
             
             return {
               id: item["番号"],
               name: item["名前"],
-              address: item["住所"],
+              address: item["住所"] || null,
               company: item["会社名"],
               interviewDate: cleanInterviewDate,
               departureDate: cleanDepartureDate,
@@ -50,7 +56,7 @@ const GraduatedSection = ({ id }) => {
             };
           });
           
-        setGraduates(graduateData);
+        setGraduates(cleanData); 
       } catch (err) {
         console.error('Error fetching graduates:', err);
         setError('Gagal memuat data lulusan. Silakan coba lagi nanti.');
@@ -59,7 +65,7 @@ const GraduatedSection = ({ id }) => {
           {
             id: "1",
             name: "MUHHAMAD FADLI",
-            address: "Dimana?",
+            address: null,
             company: "IGISHI KOGYO CO.,LTD",
             interviewDate: "2024 年 11月 02日",
             departureDate: "2025 年 4月 14日",
@@ -83,6 +89,7 @@ const GraduatedSection = ({ id }) => {
     fetchGraduates();
   }, []);
 
+
   const settings = {
     dots: true,
     infinite: true,
@@ -90,7 +97,7 @@ const GraduatedSection = ({ id }) => {
     slidesToShow: graduates.length >= 4 ? 4 : graduates.length,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 5000,
     responsive: [
       {
         breakpoint: 1024,
@@ -152,53 +159,59 @@ const GraduatedSection = ({ id }) => {
         
         {graduates.length > 0 ? (
           <Slider {...settings} className="px-2">
-            {graduates.map(graduate => (
-              <div key={graduate.id} className="px-2 focus:outline-none">
-                <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 h-full flex flex-col">
-                  <div className="h-64 w-full overflow-hidden relative">
-                    <img 
-                      src={graduate.image} 
-                      alt={graduate.name}
-                      className="absolute inset-0 w-full h-full object-cover object-[10%_18%]"
-                      onError={(e) => {
-                        e.target.onerror = null; 
-                        e.target.src = "/logo-maleo.jpg";
-                      }}
-                    />
-                    {graduate.image === '/logo-maleo.jpg' && (
-                      <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-20 w-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                    )}
-                  </div>
-                  
-                  <div className="p-6 flex-grow">
-                    <h3 className="text-xl font-semibold text-gray-800 mb-2">{graduate.name}</h3>
-                    <div className="flex items-start text-gray-600 mb-3">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          {graduates.map(graduate => (
+            <div key={graduate.id} className="px-2 focus:outline-none">
+              <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 flex flex-col h-[480px] mb-4"> {/* Fixed height */}
+                
+                {/* Gambar dengan tinggi tetap */}
+                <div className="h-52 w-full overflow-hidden relative">
+                  <img 
+                    src={graduate.image} 
+                    alt={graduate.name}
+                    className="absolute inset-0 w-full h-full object-cover object-[10%_18%]"
+                    onError={(e) => {
+                      e.target.onerror = null; 
+                      e.target.src = "/logo.png";
+                    }}
+                  />
+                  {graduate.image === '/logo.png' && (
+                    <div className="absolute inset-0 flex items-center justify-center text-gray-400 bg-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-20 w-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                  )}
+                </div>
+        
+                {/* Konten deskripsi */}
+                <div className="p-6 flex flex-col justify-between flex-grow min-h-[220px]">
+                  <div className="space-y-2">
+                    <h3 className="text-base font-semibold text-gray-800">{graduate.name}</h3>
+
+                    <div className="flex items-start text-gray-600 text-sm mb-4 mt-6">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                       </svg>
-                      <span className="text-sm">{graduate.company}</span>
+                      <span>{graduate.company}</span>
                     </div>
-                    
-                    <div className="flex items-center text-gray-600 mb-3">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+                    <div className="flex items-center text-gray-600 text-sm mb-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
-                      <span className="text-sm">Lulus: {graduate.interviewDate}</span>
+                      <span>Lulus: {graduate.interviewDate}</span>
                     </div>
-                    
-                    <div className="flex items-center text-gray-600 mb-4">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+                    <div className="flex items-center text-gray-600 text-sm">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
-                      <span className="text-sm">Berangkat: {graduate.departureDate || "Belum ditentukan"}</span>
+                      <span>Berangkat: {graduate.departureDate || "Belum ditentukan"}</span>
                     </div>
-                    
-                    
-                    <div className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm inline-flex items-center">
+                  </div>
+
+                  <div>
+                    <div className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs inline-flex items-center">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
@@ -207,8 +220,9 @@ const GraduatedSection = ({ id }) => {
                   </div>
                 </div>
               </div>
-            ))}
-          </Slider>
+            </div>
+          ))}
+        </Slider>        
         ) : (
           <div className="text-center py-10">
             <p className="text-gray-600">Tidak ada data lulusan yang tersedia</p>
