@@ -14,9 +14,11 @@ const Header = () => {
           const id = window.location.hash.substring(1);
           const element = document.getElementById(id);
           if (element) {
-            const headerHeight = document.querySelector('header')?.offsetHeight || 0;
-            const offsetPosition = element.offsetTop - headerHeight;
-            
+            const header = document.querySelector('header');
+            const headerHeight = header ? header.offsetHeight : 0;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+  
             window.scrollTo({
               top: offsetPosition,
               behavior: 'smooth'
@@ -28,10 +30,12 @@ const Header = () => {
       }
     };
   
+    // Timeout untuk memastikan DOM sudah selesai render
     const timeoutId = setTimeout(handleHashLink, 100);
+    
     return () => clearTimeout(timeoutId);
   }, []);
-
+  
   const handleToggle = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };

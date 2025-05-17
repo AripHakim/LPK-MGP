@@ -48,8 +48,8 @@ const AboutSection = ({ id }) => {
   }, []);
 
   return (
-    <section id={id} className="py-20 bg-white">
-      <div className="container mx-auto px-4 md:px-1">
+    <section className="py-12 bg-white">
+      <div id={id} className="container lg:scroll-mt-10 mx-auto px-4 md:px-1">
         <h2 className="text-3xl font-bold text-center text-primary-400 mb-12">Tentang Kami</h2>
         <div className="grid md:grid-cols-3 gap-8">
           <div className="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-[0_0_20px_#F6B211] transition-shadow duration-300">

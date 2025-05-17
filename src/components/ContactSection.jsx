@@ -88,8 +88,8 @@ const ContactSection = ({id}) => {
   };
 
   return (
-    <section id={id} className="py-20 bg-gray-50">
-      <div className="container md:mx-auto md:px-4 lg:mx-auto lg:px-4">
+    <section className="py-12 bg-gray-50">
+      <div id={id} className="container md:mx-auto md:px-4 lg:mx-auto lg:px-4 lg:scroll-mt-10">
         <h2 className="text-3xl font-bold text-center text-primary-400 mb-12">Kontak Kami</h2>
         <div className="grid md:grid-cols-2 gap-8">
           <div className="space-y-8">

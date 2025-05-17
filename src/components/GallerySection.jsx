@@ -33,10 +33,9 @@ const GallerySection = ({id}) => {
     ];
   
     return (
-      <section id={id} className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <section className="py-12 bg-gray-50">
+        <div id={id} className="container mx-auto px-4 lg:scroll-mt-10">
           <h2 className="text-3xl font-bold text-center text-primary-400 mb-12">Galeri Kegiatan</h2>
-          
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {galleryItems.map(item => (
               <div key={item.id} className="relative group overflow-hidden rounded-lg shadow-md">

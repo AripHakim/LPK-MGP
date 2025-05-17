@@ -93,7 +93,7 @@ const Footer = () => {
           </p>
           
           {/* Social Media */}
-          <div className="flex space-x-4 lg:mr-12">
+          <div className="flex space-x-4 lg:mr-20 md:mr-20">
             {[
               { 
                 url: "https://www.facebook.com/p/Lpk-Maleo-Gogakuin-Palu-61559252657771/",
