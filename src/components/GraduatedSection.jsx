@@ -159,39 +159,6 @@ const GraduatedSection = ({ id }) => {
         
         {graduates.length > 0 ? (
           <Slider {...settings} className="px-2">
-<<<<<<< HEAD
-          {graduates.map(graduate => (
-            <div key={graduate.id} className="px-2 focus:outline-none">
-              <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 flex flex-col h-[480px] mb-4"> {/* Fixed height */}
-                
-                {/* Gambar dengan tinggi tetap */}
-                <div className="h-52 w-full overflow-hidden relative">
-                  <img 
-                    src={graduate.image} 
-                    alt={graduate.name}
-                    className="absolute inset-0 w-full h-full object-cover object-[10%_18%]"
-                    onError={(e) => {
-                      e.target.onerror = null; 
-                      e.target.src = "/logo.png";
-                    }}
-                  />
-                  {graduate.image === '/logo.png' && (
-                    <div className="absolute inset-0 flex items-center justify-center text-gray-400 bg-white">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-20 w-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                  )}
-                </div>
-        
-                {/* Konten deskripsi */}
-                <div className="p-6 flex flex-col justify-between flex-grow min-h-[220px]">
-                  <div className="space-y-2">
-                    <h3 className="text-base font-semibold text-gray-800">{graduate.name}</h3>
-
-                    <div className="flex items-start text-gray-600 text-sm mb-4 mt-6">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-=======
             {graduates.map(graduate => (
               <div key={graduate.id} className="px-2 focus:outline-none">
                 <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 h-full flex flex-col">
@@ -218,7 +185,6 @@ const GraduatedSection = ({ id }) => {
                     <h3 className="text-xl font-semibold text-gray-800 mb-2">{graduate.name}</h3>
                     <div className="flex items-start text-gray-600 mb-3">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
->>>>>>> 8b3f5f267ea97455e9c3c2a10d16d91f1934ca46
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                       </svg>
                       <span>{graduate.company}</span>
