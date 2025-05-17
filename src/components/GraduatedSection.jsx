@@ -215,7 +215,6 @@ const GraduatedSection = ({ id }) => {
                   </div>
                 </div>
               </div>
-            </div>
           ))}
         </Slider>        
         ) : (
