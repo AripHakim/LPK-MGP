@@ -160,9 +160,11 @@ const GraduatedSection = ({ id }) => {
         {graduates.length > 0 ? (
           <Slider {...settings} className="px-2">
             {graduates.map(graduate => (
-              <div key={graduate.id} className="px-2 focus:outline-none h-full">
-                <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 h-full flex flex-col">
-                  {/* Image Section */}
+              <div key={graduate.id} className="px-2 focus:outline-none">
+                {/* Set fixed height for card container */}
+                <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 h-[420px] flex flex-col">
+                  
+                  {/* Image Section with fixed height */}
                   <div className="h-48 w-full overflow-hidden relative flex-shrink-0">
                     <img 
                       src={graduate.image} 
@@ -182,34 +184,39 @@ const GraduatedSection = ({ id }) => {
                     )}
                   </div>
                   
-                  {/* Content Section */}
-                  <div className="p-4 flex-grow flex flex-col">
+                  {/* Content Section with fixed padding and flex layout */}
+                  <div className="p-4 flex flex-col flex-grow">
+                    {/* Name with line clamp */}
                     <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-1">{graduate.name}</h3>
                     
+                    {/* Company info with fixed icon size */}
                     <div className="flex items-start mb-2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                       </svg>
-                      <span className="text-sm text-gray-600 line-clamp-2">{graduate.company}</span>
+                      <span className="text-sm text-gray-600 line-clamp-2 flex-grow">{graduate.company}</span>
                     </div>
           
-                    <div className="flex items-center text-gray-600 text-xs mb-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <span>Lulus: {graduate.interviewDate}</span>
-                    </div>
+                    {/* Dates section with consistent spacing */}
+                    <div className="space-y-2 mb-3">
+                      <div className="flex items-center text-gray-600 text-xs">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 mr-1.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Lulus: {graduate.interviewDate}</span>
+                      </div>
           
-                    <div className="flex items-center text-gray-600 text-xs mb-3">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      <span>Berangkat: {graduate.departureDate || "Belum ditentukan"}</span>
+                      <div className="flex items-center text-gray-600 text-xs">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 mr-1.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <span>Berangkat: {graduate.departureDate || "Belum ditentukan"}</span>
+                      </div>
                     </div>
                     
-                    {/* Status Badge */}
-                    <div className="mt-auto">
-                      <div className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs inline-flex items-center w-fit">
+                    {/* Status badge positioned at bottom */}
+                    <div className="mt-auto pt-2">
+                      <div className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs inline-flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
@@ -220,7 +227,7 @@ const GraduatedSection = ({ id }) => {
                 </div>
               </div>
             ))}
-          </Slider>       
+          </Slider>    
         ) : (
           <div className="text-center py-10">
             <p className="text-gray-600">Tidak ada data lulusan yang tersedia</p>
