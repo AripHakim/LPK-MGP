@@ -167,7 +167,7 @@ const GraduatedSection = ({ id }) => {
                     <img 
                       src={graduate.image} 
                       alt={graduate.name}
-                      className="absolute inset-0 w-full h-full object-cover"
+                      className="absolute inset-0 w-full h-full object-cover object-[10%_18%]"
                       onError={(e) => {
                         e.target.onerror = null; 
                         e.target.src = "/logo.png";
