@@ -32,22 +32,22 @@ const OrganizationSection = ({ id }) => {
     },
     {
       id: 6,
-      name: "MUSLIM",
-      position: "PENGAJAR",
-      image: "/organisasi/muslim.jpeg"
-    },
-    {
-      id: 7,
       name: "ISMAWATI",
       position: "STAFF ADMINISTRASI",
       image: "/organisasi/isma.JPG"
     },
     {
-      id: 8,
+      id: 7,
       name: "DEVI MUHARANI",
       position: "STAFF ADMINISTRASI",
       image: "/organisasi/devi.jpg"
-    }
+    },
+    {
+      id: 8,
+      name: "MUSLIM",
+      position: "STAFF ADMINISTRASI",
+      image: "/organisasi/muslim.jpeg"
+    },
   ];
 
   return (
@@ -99,8 +99,8 @@ const OrganizationSection = ({ id }) => {
               </div>
 
               {/* Staff Administrasi */}
-              <div className="flex gap-4">
-                {organizationItems.slice(6).map(item => (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {organizationItems.slice(5).map(item => (
                   <div key={item.id} className="flex flex-col items-center p-2">
                     <div className="w-20 h-20 md:w-24 md:h-24 rounded-full mx-auto mb-2 overflow-hidden border-2 border-secondary-600">
                       <img 
@@ -144,8 +144,8 @@ const OrganizationSection = ({ id }) => {
               </div>
 
               {/* Pengajar */}
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {organizationItems.slice(3, 6).map(item => (
+              <div className="flex gap-4">
+                {organizationItems.slice(3, 5).map(item => (
                   <div key={item.id} className="flex flex-col items-center p-2">
                     <div className="w-20 h-20 md:w-24 md:h-24 rounded-full mx-auto mb-2 overflow-hidden border-2 border-secondary-600">
                       <img 
