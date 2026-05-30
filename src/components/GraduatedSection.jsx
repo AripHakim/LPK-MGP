@@ -7,6 +7,7 @@ const GraduatedSection = ({ id }) => {
   const [graduates, setGraduates] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isFallback, setIsFallback] = useState(false);
 
   useEffect(() => {
     const fetchGraduates = async () => {
@@ -60,6 +61,7 @@ const GraduatedSection = ({ id }) => {
       } catch (err) {
         console.error('Error fetching graduates:', err);
         // setError('Gagal memuat data lulusan. Silakan coba lagi nanti.');
+        setIsFallback(true);
         
         setGraduates([
           {
