@@ -136,22 +136,28 @@ const GraduatedSection = ({ id }) => {
     );
   }
 
-  if (error) {
-    return (
-      <section className="py-20 bg-white">
-        <div id={id} className="container mx-auto px-4 text-center">
-          <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 max-w-2xl mx-auto">
-            <p>{error}</p>
-          </div>
-          <p className="text-gray-600">Menampilkan data contoh...</p>
-        </div>
-      </section>
-    );
-  }
+  // if (error) {
+  //   return (
+  //     <section className="py-20 bg-white">
+  //       <div id={id} className="container mx-auto px-4 text-center">
+  //         <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 max-w-2xl mx-auto">
+  //           <p>{error}</p>
+  //         </div>
+  //         <p className="text-gray-600">Menampilkan data contoh...</p>
+  //       </div>
+  //     </section>
+  //   );
+  // }
 
   return (
     <section className="py-20 bg-white">
       <div id={id} className="container mx-auto px-4 lg:scroll-mt-10">
+
+        {isFallback && (
+          <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6 rounded">
+            Server sedang tidak tersedia. Menampilkan data contoh.
+          </div>
+        )}
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-primary-400 mb-4">Lulusan Berprestasi Kami</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
