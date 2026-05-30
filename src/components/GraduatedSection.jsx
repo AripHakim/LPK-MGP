@@ -61,11 +61,9 @@ const GraduatedSection = ({ id }) => {
         setGraduates(cleanData); 
       } catch (err) {
         console.error('Error fetching graduates:', err);
-        // setError('Gagal memuat data lulusan. Silakan coba lagi nanti.');
         setIsFallback(true);
         setShowFallbackMessage(true);
 
-        
         setGraduates([
           {
             id: "1",
@@ -148,7 +146,7 @@ const GraduatedSection = ({ id }) => {
 
         setTimeout(() => {
           setShowFallbackMessage(false);
-        }, 2000); // hilang setelah 3 detik
+        }, 2000);
       } finally {
         setLoading(false);
       }
@@ -166,9 +164,9 @@ const GraduatedSection = ({ id }) => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
-    arrows: true,      // <-- tombol next/prev
-    swipe: true,       // <-- geser dengan mouse/touch
-    draggable: true,   // <-- drag pakai mouse
+    arrows: true,      
+    swipe: true,       
+    draggable: true,  
     responsive: [
       {
         breakpoint: 1024,
@@ -205,29 +203,9 @@ const GraduatedSection = ({ id }) => {
     );
   }
 
-  // if (error) {
-  //   return (
-  //     <section className="py-20 bg-white">
-  //       <div id={id} className="container mx-auto px-4 text-center">
-  //         <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 max-w-2xl mx-auto">
-  //           <p>{error}</p>
-  //         </div>
-  //         <p className="text-gray-600">Menampilkan data contoh...</p>
-  //       </div>
-  //     </section>
-  //   );
-  // }
-
   return (
     <section className="py-20 bg-white">
       <div id={id} className="container mx-auto px-4 lg:scroll-mt-10">
-
-        {/* {isFallback && (
-          <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6 rounded">
-            Server sedang tidak tersedia. Menampilkan data contoh.
-          </div>
-        )} */}
-
         <div
             className={`transition-opacity duration-1000 ${
               showFallbackMessage ? "opacity-100" : "opacity-0"
@@ -247,9 +225,7 @@ const GraduatedSection = ({ id }) => {
           <Slider {...settings} className="px-2">
             {graduates.map(graduate => (
               <div key={graduate.id} className="px-2 focus:outline-none mb-4">
-                {/* Set fixed height for card container */}
                 <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 h-[420px] flex flex-col">
-                  {/* Image Section with fixed height */}
                   <div className="h-48 w-full overflow-hidden relative flex-shrink-0">
                     <img 
                       src={graduate.image} 
@@ -269,12 +245,9 @@ const GraduatedSection = ({ id }) => {
                     )}
                   </div>
                   
-                  {/* Content Section with fixed padding and flex layout */}
                   <div className="p-4 flex flex-col flex-grow">
-                    {/* Name with line clamp */}
                     <h3 className="text-lg font-semibold text-gray-800 mb-4 mt-2 line-clamp-1">{graduate.name}</h3>
                     
-                    {/* Company info with fixed icon size */}
                     <div className="flex items-start mb-2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -282,7 +255,6 @@ const GraduatedSection = ({ id }) => {
                       <span className="text-sm text-gray-600 line-clamp-2 flex-grow">{graduate.company}</span>
                     </div>
           
-                    {/* Dates section with consistent spacing */}
                     <div className="space-y-2 mb-6">
                       <div className="flex items-center text-gray-600 text-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">

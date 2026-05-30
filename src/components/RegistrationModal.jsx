@@ -1,10 +1,39 @@
 import { useState, useRef, useEffect } from 'react';
+import Swal from 'sweetalert2';
+
 
 const RegistrationModal = ({ isOpen, onClose }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const modalRef = useRef(null);
+
+  const handleRegistrationClosed = () => {
+  Swal.fire({
+    icon: 'warning',
+    title: 'Pendaftaran Bermasalah🙏🙏',
+    html: `
+      <p>Silakan hubungi kami melalui WhatsApp atau Instagram untuk informasi pendaftaran.</p>
+    `,
+    showDenyButton: true,
+    showCancelButton: true,
+    confirmButtonText: 'WhatsApp',
+    denyButtonText: 'Instagram',
+    cancelButtonText: 'Tutup'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.open(
+            `https://wa.me/6282291570604?text=${encodeURIComponent(`Assalamualaikum warahmatullahi wabarakatuh...\nMohon maaf mengganggu waktunya kak.. Saya ingin bertanya mengenai informasi pendaftaran masuk kak..\nTerima kasih`)}`,
+            '_blank'
+          );
+        } else if (result.isDenied) {
+          window.open(
+            'https://www.instagram.com/lpkmaleogogakuin.plw/',
+            '_blank'
+          );
+        }
+      });
+    };
   
   const [formData, setFormData] = useState({
     namaLengkap: '',
@@ -435,7 +464,7 @@ const RegistrationModal = ({ isOpen, onClose }) => {
               )}
             </div>            
             <div className="pt-4">
-              <button
+              {/* <button
                 type="submit"
                 disabled={isSubmitting}
                 className={`w-full py-2 px-4 rounded-md ${
@@ -453,6 +482,14 @@ const RegistrationModal = ({ isOpen, onClose }) => {
                     Mengirim...
                   </span>
                 ) : 'Kirim Pendaftaran'}
+              </button> */}
+
+              <button
+                type="button"
+                onClick={handleRegistrationClosed}
+                className="w-full py-2 px-4 rounded-md bg-orange-500 hover:bg-orange-600 text-white text-center font-medium text-sm transition duration-300"
+              >
+                Pendaftaran Ditutup
               </button>
             </div>
           </form>

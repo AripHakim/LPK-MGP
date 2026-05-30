@@ -77,7 +77,6 @@ const ContactSection = ({id}) => {
       'kZyf2wOhG85ZaVBGZ' 
     )
     .then((response) => {
-      // alert('Pesan terkirim! Kami akan segera menghubungi Anda.');
       Swal.fire({
         icon: 'success',
         title: 'Berhasil!',
@@ -86,7 +85,6 @@ const ContactSection = ({id}) => {
       });
       setFormData({ name: '', email: '', phone: '', message: '' });
     }, (error) => {
-      // alert('Gagal mengirim pesan, silakan coba lagi atau hubungi via WhatsApp.');
       Swal.fire({
         icon: 'error',
         title: 'Gagal Mengirim Pesan',

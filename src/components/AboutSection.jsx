@@ -63,7 +63,6 @@ const AboutSection = ({ id }) => {
                 <h3 className="text-md font-semibold text-primary-400">Peserta Terdaftar</h3>
                 <p className="text-primary-400 font-medium">
                   {participants} Orang
-                  {/* {graduates.length} Orang */}
                 </p>
               </div>
             </div>
