@@ -59,7 +59,7 @@ const GraduatedSection = ({ id }) => {
         setGraduates(cleanData); 
       } catch (err) {
         console.error('Error fetching graduates:', err);
-        setError('Gagal memuat data lulusan. Silakan coba lagi nanti.');
+        // setError('Gagal memuat data lulusan. Silakan coba lagi nanti.');
         
         setGraduates([
           {
