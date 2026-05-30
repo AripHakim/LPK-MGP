@@ -71,7 +71,25 @@ const GraduatedSection = ({ id }) => {
             company: "IGISHI KOGYO CO.,LTD",
             interviewDate: "2024 年 11月 02日",
             departureDate: "2025 年 4月 14日",
-            image: '/logo.png'
+            image: 'hokage/fadli.JPG'
+          },
+          {
+            id: "2",
+            name: "MUHHAMAD FADLI",
+            address: null,
+            company: "IGISHI KOGYO CO.,LTD",
+            interviewDate: "2024 年 11月 02日",
+            departureDate: "2025 年 4月 14日",
+            image: 'hokage/aji.JPG'
+          },
+          {
+            id: "3",
+            name: "MUHHAMAD FADLI",
+            address: null,
+            company: "IGISHI KOGYO CO.,LTD",
+            interviewDate: "2024 年 11月 02日",
+            departureDate: "2025 年 4月 14日",
+            image: 'hokage/fatir.JPG'
           },
           {
             id: "4",
@@ -80,7 +98,7 @@ const GraduatedSection = ({ id }) => {
             company: "YAMAMARU FUJI",
             interviewDate: "2025 年 02月 07日",
             departureDate: null,
-            image: '/logo.png'
+            image: 'hokage/apip.png'
           }
         ]);
       } finally {
@@ -158,6 +176,7 @@ const GraduatedSection = ({ id }) => {
             Server sedang tidak tersedia. Menampilkan data contoh.
           </div>
         )}
+        
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-primary-400 mb-4">Lulusan Berprestasi Kami</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
