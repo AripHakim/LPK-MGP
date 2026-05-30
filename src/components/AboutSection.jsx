@@ -78,7 +78,7 @@ const AboutSection = ({ id }) => {
                 {loading ? (
                   <div className="animate-pulse h-6 w-10 bg-gray-200 rounded"></div>
                 ) : error ? (
-                  <p className="text-red-500 text-sm">Error loading data</p>
+                  <p className="text-red-500 text-sm">Gagal memuat data</p>
                 ) : (
                   <p className="text-primary-400 font-medium">
                     {graduates.length} Orang

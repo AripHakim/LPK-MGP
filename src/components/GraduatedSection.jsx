@@ -8,6 +8,7 @@ const GraduatedSection = ({ id }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isFallback, setIsFallback] = useState(false);
+  const [showFallbackMessage, setShowFallbackMessage] = useState(false);
 
   useEffect(() => {
     const fetchGraduates = async () => {
@@ -62,6 +63,8 @@ const GraduatedSection = ({ id }) => {
         console.error('Error fetching graduates:', err);
         // setError('Gagal memuat data lulusan. Silakan coba lagi nanti.');
         setIsFallback(true);
+        setShowFallbackMessage(true);
+
         
         setGraduates([
           {
@@ -69,38 +72,83 @@ const GraduatedSection = ({ id }) => {
             name: "MUHHAMAD FADLI",
             address: null,
             company: "IGISHI KOGYO CO.,LTD",
-            interviewDate: "2024 年 11月 02日",
-            departureDate: "2025 年 4月 14日",
+            interviewDate: "2 November 2024",
+            departureDate: "14 April 2025",
             image: 'hokage/fadli.JPG'
           },
           {
             id: "2",
-            name: "MUHHAMAD FADLI",
+            name: "AJI DWI PURNAMA PUTRA",
             address: null,
-            company: "IGISHI KOGYO CO.,LTD",
-            interviewDate: "2024 年 11月 02日",
-            departureDate: "2025 年 4月 14日",
+            company: "YUUSHOU CO.,LTD",
+            interviewDate: "18 Desember 2024",
+            departureDate: null,
             image: 'hokage/aji.JPG'
           },
           {
             id: "3",
-            name: "MUHHAMAD FADLI",
+            name: "MOH. FATHIR",
             address: null,
-            company: "IGISHI KOGYO CO.,LTD",
-            interviewDate: "2024 年 11月 02日",
-            departureDate: "2025 年 4月 14日",
+            company: "YUUSHOU CO.,LTD",
+            interviewDate: "18 Desember 2024",
+            departureDate: null,
             image: 'hokage/fatir.JPG'
-          },
+          }
+          ,
           {
             id: "4",
             name: "ADZIAN AFIF",
             address: null,
             company: "YAMAMARU FUJI",
-            interviewDate: "2025 年 02月 07日",
+            interviewDate: "7 Februari 2025",
             departureDate: null,
             image: 'hokage/apip.png'
           }
+          ,
+          {
+            id: "5",
+            name: "RAYYAN MEIZAR RABBANI",
+            address: null,
+            company: "KABUSHIKI GAISHA NAKASONE KOGYO Co., Ltd.",
+            interviewDate: "8 Mei 2025",
+            departureDate: null,
+            image: 'logo.png'
+          }
+          ,
+          {
+            id: "6",
+            name: "FATUR RAHMAN",
+            address: null,
+            company: "KABUSHIKI GAISHA NAKASONE KOGYO Co., Ltd.",
+            interviewDate: "8 Mei 2025",
+            departureDate: null,
+            image: 'logo.png'
+          }
+          ,
+          {
+            id: "7",
+            name: "MOH. ADRIE",
+            address: null,
+            company: "KABUSHIKI GAISHA SUZUKI KOGYO",
+            interviewDate: "2 Juni 2025",
+            departureDate: null,
+            image: 'logo.png'
+          }
+          ,
+          {
+            id: "8",
+            name: "ARHAM AR SABRY",
+            address: null,
+            company: "KABUSHIKI GAISHA SUZUKI KOGYO",
+            interviewDate: "2 Juni 2025",
+            departureDate: null,
+            image: 'logo.png'
+          }
         ]);
+
+        setTimeout(() => {
+          setShowFallbackMessage(false);
+        }, 2000); // hilang setelah 3 detik
       } finally {
         setLoading(false);
       }
@@ -118,6 +166,9 @@ const GraduatedSection = ({ id }) => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
+    arrows: true,      // <-- tombol next/prev
+    swipe: true,       // <-- geser dengan mouse/touch
+    draggable: true,   // <-- drag pakai mouse
     responsive: [
       {
         breakpoint: 1024,
@@ -171,12 +222,20 @@ const GraduatedSection = ({ id }) => {
     <section className="py-20 bg-white">
       <div id={id} className="container mx-auto px-4 lg:scroll-mt-10">
 
-        {isFallback && (
+        {/* {isFallback && (
           <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6 rounded">
             Server sedang tidak tersedia. Menampilkan data contoh.
           </div>
-        )}
-        
+        )} */}
+
+        <div
+            className={`transition-opacity duration-1000 ${
+              showFallbackMessage ? "opacity-100" : "opacity-0"
+            } bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6 rounded`}
+          >
+          Server sedang tidak tersedia. Menampilkan data contoh.
+        </div>
+
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-primary-400 mb-4">Lulusan Berprestasi Kami</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">

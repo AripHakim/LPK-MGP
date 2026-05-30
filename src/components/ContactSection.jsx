@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import emailjs from 'emailjs-com';
 import L from 'leaflet';
+import Swal from 'sweetalert2';
 
 const customIcon = L.icon({
   iconUrl: '/pin.png', 
@@ -76,10 +77,32 @@ const ContactSection = ({id}) => {
       'kZyf2wOhG85ZaVBGZ' 
     )
     .then((response) => {
-      alert('Pesan terkirim! Kami akan segera menghubungi Anda.');
+      // alert('Pesan terkirim! Kami akan segera menghubungi Anda.');
+      Swal.fire({
+        icon: 'success',
+        title: 'Berhasil!',
+        text: 'Pesan terkirim! Kami akan segera menghubungi Anda.🙌',
+        confirmButtonText: 'OK'
+      });
       setFormData({ name: '', email: '', phone: '', message: '' });
     }, (error) => {
-      alert('Gagal mengirim pesan, silakan coba lagi atau hubungi via WhatsApp.');
+      // alert('Gagal mengirim pesan, silakan coba lagi atau hubungi via WhatsApp.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Gagal Mengirim Pesan',
+        text: 'Silakan coba lagi atau hubungi kami melalui WhatsApp.',
+        showCancelButton: true,
+        confirmButtonText: 'Hubungi WhatsApp',
+        cancelButtonText: 'Tutup'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.open(
+            // 'https://wa.me/6281234567890?text=Halo%20LPK%20Maleo,%20saya%20ingin%20bertanya.',
+            'https://wa.me/6282131223365',
+            '_blank'
+          );
+        }
+      });
       console.error('EmailJS Error:', error);
     })
     .finally(() => {
