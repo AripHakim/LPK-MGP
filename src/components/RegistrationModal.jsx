@@ -19,7 +19,7 @@ const RegistrationModal = ({ isOpen, onClose }) => {
     showCancelButton: true,
     confirmButtonText: 'WhatsApp',
     denyButtonText: 'Instagram',
-    cancelButtonText: 'Tutup'
+    cancelButtonText: 'Tutup',
       }).then((result) => {
         if (result.isConfirmed) {
           window.open(

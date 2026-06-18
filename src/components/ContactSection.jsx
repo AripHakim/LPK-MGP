@@ -79,9 +79,31 @@ const ContactSection = ({id}) => {
     .then((response) => {
       Swal.fire({
         icon: 'success',
-        title: 'Berhasil!',
-        text: 'Pesan terkirim! Kami akan segera menghubungi Anda.🙌',
-        confirmButtonText: 'OK'
+        title: 'Pesan Berhasil Dikirim! 🎉',
+        text: 'Terima kasih telah menghubungi LPK Maleo Gogakuin. Jika belum mendapatkan balasan melalui email, silakan hubungi kami melalui WhatsApp atau Instagram.',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'WhatsApp',
+        denyButtonText: 'Instagram',
+        cancelButtonText: 'Tutup',
+
+        footer: '<small>Kami lebih aktif merespons melalui media sosial 😊</small>'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.open(
+           `https://wa.me/6282131223365?text=${encodeURIComponent(
+      `Assalamualaikum warahmatullahi wabarakatuh, kak..
+Mohon maaf mengganggu waktunya. Saya ingin menanyakan beberapa hal lebih lanjut mengenai LPK Maleo Gogakuin.
+Terima kasih atas waktunya. 🙏`
+    )}`,
+    '_blank'
+          );
+        } else if (result.isDenied) {
+          window.open(
+            'https://www.instagram.com/lpkmaleogogakuin.plw/',
+            '_blank'
+          );
+        }
       });
       setFormData({ name: '', email: '', phone: '', message: '' });
     }, (error) => {
@@ -95,7 +117,6 @@ const ContactSection = ({id}) => {
       }).then((result) => {
         if (result.isConfirmed) {
           window.open(
-            // 'https://wa.me/6281234567890?text=Halo%20LPK%20Maleo,%20saya%20ingin%20bertanya.',
             'https://wa.me/6282131223365',
             '_blank'
           );
