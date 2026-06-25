@@ -1,52 +1,62 @@
+import indra from '../assets/organisasi/indra.webp';
+import eka from '../assets/organisasi/ekasila.webp';
+import juan from '../assets/organisasi/juan.webp';
+import dahlia from '../assets/organisasi/dahlia.webp';
+import faraz from '../assets/organisasi/faraz.webp';
+import isma from '../assets/organisasi/isma.webp';
+import devi from '../assets/organisasi/devi.webp';
+import muslim from '../assets/organisasi/muslim.webp';
+import { lazy } from 'react';
+
 const OrganizationSection = ({ id }) => {
   const organizationItems = [
     {
       id: 1,
       name: "INDRAWAN",
       position: "PIMPINAN",
-      image: "/organisasi/indra shacho.png"
+      image: indra
     },
     {
       id: 2,
       name: "EKASILA",
       position: "KEPALA KANTOR",
-      image: "/organisasi/ekasila.jpeg"
+      image: eka
     },
     {
       id: 3,
       name: "JUAN VICTORIO",
       position: "KEPALA PENGAJAR",
-      image: "/organisasi/juan.jpeg"
+      image: juan
     },
     {
       id: 4,
       name: "DAHLIA",
       position: "PENGAJAR",
-      image: "/organisasi/DAHLIA SENSEI.png"
+      image: dahlia
     },
     {
       id: 5,
       name: "FARAZ SALSABILAH. R",
       position: "PENGAJAR",
-      image: "/organisasi/FARAZ.jpg"
+      image: faraz
     },
     {
       id: 6,
       name: "ISMAWATI",
       position: "STAFF ADMINISTRASI",
-      image: "/organisasi/isma.JPG"
+      image: isma
     },
     {
       id: 7,
       name: "DEVI MUHARANI",
       position: "STAFF ADMINISTRASI",
-      image: "/organisasi/devi.jpg"
+      image: devi
     },
     {
       id: 8,
       name: "MUSLIM",
       position: "STAFF ADMINISTRASI",
-      image: "/organisasi/muslim.jpeg"
+      image: muslim
     },
   ];
 
@@ -63,10 +73,13 @@ const OrganizationSection = ({ id }) => {
                   src={organizationItems[0].image} 
                   alt={organizationItems[0].name} 
                   className="w-full h-full object-cover"
+                  width={96}
+                  height={96} 
                   onError={(e) => {
                     e.target.onerror = null; 
                     e.target.src = "/placeholder-user.png";
                   }}
+                  loading="lazy"
                 />
               </div>
               <div className="text-center">
@@ -84,12 +97,15 @@ const OrganizationSection = ({ id }) => {
                 <div className="w-28 h-28 md:w-32 md:h-32 rounded-full mx-auto mb-4 overflow-hidden border-2 border-secondary-600">
                   <img 
                     src={organizationItems[1].image} 
-                    alt={organizationItems[1].name} 
+                    alt={organizationItems[1].name}
+                    width={96}
+                  height={96}
                     className="w-full h-full object-cover object-[10%_10%]"
                     onError={(e) => {
                       e.target.onerror = null; 
                       e.target.src = "/placeholder-user.png";
                     }}
+                    loading="lazy"
                   />
                 </div>
                 <div className="text-center">
@@ -106,11 +122,14 @@ const OrganizationSection = ({ id }) => {
                       <img 
                         src={item.image} 
                         alt={item.name} 
+                       width={96}
+                  height={96} 
                         className="w-full h-full object-cover object-[10%_10%]"
                         onError={(e) => {
                           e.target.onerror = null; 
                           e.target.src = "/placeholder-user.png";
                         }}
+                        loading="lazy"
                       />
                     </div>
                     <div className="text-center">
@@ -129,12 +148,15 @@ const OrganizationSection = ({ id }) => {
                 <div className="w-28 h-28 md:w-32 md:h-32 rounded-full mx-auto mb-4 overflow-hidden border-2 border-secondary-600">
                   <img 
                     src={organizationItems[2].image} 
-                    alt={organizationItems[2].name} 
+                    alt={organizationItems[2].name}
+                     width={96}
+                  height={96}
                     className="w-full h-full object-cover object-[10%_10%]"
                     onError={(e) => {
                       e.target.onerror = null; 
                       e.target.src = "/placeholder-user.png";
                     }}
+                    loading="lazy"
                   />
                 </div>
                 <div className="text-center">
@@ -151,11 +173,14 @@ const OrganizationSection = ({ id }) => {
                       <img 
                         src={item.image} 
                         alt={item.name} 
+                         width={96}
+                  height={96}
                         className="w-full h-full object-cover object-[10%_40%]"
                         onError={(e) => {
                           e.target.onerror = null; 
                           e.target.src = "/placeholder-user.png";
                         }}
+                        loading="lazy"
                       />
                     </div>
                     <div className="text-center">

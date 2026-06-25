@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import arrowUpImage from '../assets/logo.png'; 
+import arrowUpImage from '../assets/logo.webp'; 
+import { lazy } from 'react';
 
 const BackToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -48,10 +49,13 @@ const BackToTopButton = () => {
         src={arrowUpImage} 
         alt="Up arrow"
         className="w-8 h-8 object-contain"
+        width={96}
+        height={96}
         onError={(e) => {
           e.target.onerror = null;
           e.target.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%232238a6"><path fillRule="evenodd" d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z" clipRule="evenodd"/></svg>';
         }}
+        loading="lazy"
       />
     </button>
   );

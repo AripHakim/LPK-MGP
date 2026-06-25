@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import fadli from '../assets/hokage/fadli.webp';
+import apip from '../assets/hokage/apip.webp';
+import mas from '../assets/hokage/aji.webp';
+import fatir from '../assets/hokage/fatir.webp';
+import logo from '../assets/logo.webp';
+import { lazy, lazyLoad } from 'react';
 
 const GraduatedSection = ({ id }) => {
   const [graduates, setGraduates] = useState([]);
@@ -72,7 +78,7 @@ const GraduatedSection = ({ id }) => {
             company: "IGISHI KOGYO CO.,LTD",
             interviewDate: "2 November 2024",
             departureDate: "14 April 2025",
-            image: 'hokage/fadli.JPG'
+            image: fadli
           },
           {
             id: "2",
@@ -81,7 +87,7 @@ const GraduatedSection = ({ id }) => {
             company: "YUUSHOU CO.,LTD",
             interviewDate: "18 Desember 2024",
             departureDate: null,
-            image: 'hokage/aji.JPG'
+            image: mas
           },
           {
             id: "3",
@@ -90,7 +96,7 @@ const GraduatedSection = ({ id }) => {
             company: "YUUSHOU CO.,LTD",
             interviewDate: "18 Desember 2024",
             departureDate: null,
-            image: 'hokage/fatir.JPG'
+            image: fatir
           }
           ,
           {
@@ -100,7 +106,7 @@ const GraduatedSection = ({ id }) => {
             company: "YAMAMARU FUJI",
             interviewDate: "7 Februari 2025",
             departureDate: null,
-            image: 'hokage/apip.png'
+            image: apip
           }
           ,
           {
@@ -110,7 +116,7 @@ const GraduatedSection = ({ id }) => {
             company: "KABUSHIKI GAISHA NAKASONE KOGYO Co., Ltd.",
             interviewDate: "8 Mei 2025",
             departureDate: null,
-            image: 'logo.png'
+            image: logo
           }
           ,
           {
@@ -120,7 +126,7 @@ const GraduatedSection = ({ id }) => {
             company: "KABUSHIKI GAISHA NAKASONE KOGYO Co., Ltd.",
             interviewDate: "8 Mei 2025",
             departureDate: null,
-            image: 'logo.png'
+            image: logo
           }
           ,
           {
@@ -130,7 +136,7 @@ const GraduatedSection = ({ id }) => {
             company: "KABUSHIKI GAISHA SUZUKI KOGYO",
             interviewDate: "2 Juni 2025",
             departureDate: null,
-            image: 'logo.png'
+            image: logo
           }
           ,
           {
@@ -140,7 +146,7 @@ const GraduatedSection = ({ id }) => {
             company: "KABUSHIKI GAISHA SUZUKI KOGYO",
             interviewDate: "2 Juni 2025",
             departureDate: null,
-            image: 'logo.png'
+            image: logo
           }
         ]);
 
@@ -163,10 +169,11 @@ const GraduatedSection = ({ id }) => {
     slidesToShow: graduates.length >= 4 ? 4 : graduates.length,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 80000,
     arrows: true,      
     swipe: true,       
-    draggable: true,  
+    draggable: true, 
+    lazyLoad: "ondemand", 
     responsive: [
       {
         breakpoint: 1024,
@@ -230,11 +237,14 @@ const GraduatedSection = ({ id }) => {
                     <img 
                       src={graduate.image} 
                       alt={graduate.name}
+                      width="400"
+                      height="256"
                       className="absolute inset-0 w-[1000px] h-full object-contain"
                       onError={(e) => {
                         e.target.onerror = null; 
                         e.target.src = "/logo.png";
                       }}
+                      loading="lazy"
                     />
                     {graduate.image === '/logo.png' && (
                       <div className="absolute inset-0 bg-gray-100 flex items-center justify-center text-gray-400">

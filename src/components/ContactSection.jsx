@@ -3,9 +3,12 @@ import dynamic from 'next/dynamic';
 import emailjs from 'emailjs-com';
 import L from 'leaflet';
 import Swal from 'sweetalert2';
+import pin from '../assets/pin.webp';
+import fotoLPK from '../assets/lpk-maleo.webp';
+
 
 const customIcon = L.icon({
-  iconUrl: '/pin.png', 
+  iconUrl: pin, 
   iconSize: [50, 50],  
   iconAnchor: [16, 32], 
   popupAnchor: [0, -32],
@@ -25,11 +28,11 @@ const MapWithNoSSR = dynamic(
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          <Marker position={center} icon={customIcon}>
+          <Marker position={center} icon={customIcon} loading="lazy">
             <Popup maxWidth={1600}>
               <div style={{ textAlign: 'center', width: '100%' }}>
                 <img 
-                  src="/lpk-maleo.jpg" 
+                  src={fotoLPK} 
                   alt="Foto LPK" 
                   style={{
                     width: '300px',
@@ -37,7 +40,8 @@ const MapWithNoSSR = dynamic(
                     maxWidth: '1550px',  
                     borderRadius: '0.5rem',
                     marginTop: '0.5rem'
-                  }} 
+                  }}
+                  loading="lazy"
                 />
               </div>
             </Popup>
@@ -142,7 +146,7 @@ Terima kasih atas waktunya. 🙏`
 
               <div className="flex items-start">
                   <div className="h-56 md:h-64 w-full z-30">
-                    <MapWithNoSSR center={mapCenter} zoom={mapZoom} />
+                    <MapWithNoSSR center={mapCenter} zoom={mapZoom} loading="lazy" />
                   </div>
                 </div>
                 <div className="flex items-start">

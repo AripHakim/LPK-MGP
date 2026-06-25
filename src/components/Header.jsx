@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { HashLink } from 'react-router-hash-link';
-import Logo from '../assets/logo.png';
+import Logo from '../assets/logo.webp';
 import RegistrationModal from './RegistrationModal';
+import { lazy } from 'react';
 
 const Header = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -55,7 +56,8 @@ const Header = () => {
         <div className="container mx-auto md:px-4 md:py-4 px-2 py-2 flex justify-between items-center">
           <div className="flex items-center">
             <div className="text-white p-2 rounded-lg mr-3">
-              <img src={Logo} alt="logo maleo" className="h-12 w-12 md:h-8 md:w-12 lg:h-16 lg:w-16" />
+              <img src={Logo} alt="logo maleo" className="h-12 w-12 md:h-8 md:w-12 lg:h-16 lg:w-16"  width={96}
+                  height={96} loading="lazy"/>
             </div>
             <div>
               <h1 className="text-md md:text-sm lg:text-xl font-bold text-primary-400">

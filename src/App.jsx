@@ -2,20 +2,20 @@ import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
-import AboutSection from './components/AboutSection';
-import OrganizationSection from './components/OrganizationSection';
-import GraduatedSection from './components/GraduatedSection';
-import GallerySection from './components/GallerySection';
-import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import BackToTopButton from './components/BackToTopButton';
+import { lazy, Suspense } from 'react';
 
-// Komponen ScrollToTop yang tidak mengganggu BackToTopButton
+const AboutSection = lazy (() => import("./components/AboutSection"));
+const OrganizationSection = lazy (() => import("./components/OrganizationSection"));
+const GraduatedSection = lazy (() => import("./components/GraduatedSection"));
+const GallerySection = lazy (() => import("./components/GallerySection"));
+const ContactSection = lazy (() => import("./components/ContactSection"));
+
 function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // Hanya reset scroll jika bukan hash link
     if (!window.location.hash) {
       window.scrollTo(0, 0);
     }
@@ -35,7 +35,6 @@ function App() {
           const headerHeight = document.querySelector('header')?.offsetHeight || 0;
           const offsetPosition = element.offsetTop - headerHeight;
           
-          // Gunakan requestAnimationFrame untuk menghindari konflik
           requestAnimationFrame(() => {
             window.scrollTo({
               top: offsetPosition,
@@ -46,7 +45,6 @@ function App() {
       }
     };
 
-    // Timer diperpendek dan dijamin cleanup
     const timeoutId = setTimeout(handleHashLink, 50);
     return () => clearTimeout(timeoutId);
   }, []);
@@ -59,12 +57,22 @@ function App() {
         <Routes>
           <Route path="/" element={
             <>
-              <HeroSection id="home" />
+            <HeroSection id="home" />
+            <Suspense fallback={null}>
               <AboutSection id="about" />
+            </Suspense>
+            <Suspense fallback={null}>
               <OrganizationSection id="organisasi" />
+            </Suspense>
+            <Suspense fallback={null}>
               <GraduatedSection id="lulusan" />
+            </Suspense>
+            <Suspense fallback={null}>
               <GallerySection id="galeri" />
+            </Suspense>
+            <Suspense fallback={null}>
               <ContactSection id="contact" />
+            </Suspense>
             </>
           } />
         </Routes>

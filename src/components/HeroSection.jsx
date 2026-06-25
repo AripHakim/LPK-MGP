@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { HashLink } from 'react-router-hash-link';
 import RegistrationModal from './RegistrationModal';
+import heroImg from '../assets/event/hero-img.webp';
 
 const HeroSection = ({ id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,10 +38,12 @@ const HeroSection = ({ id }) => {
         <div className="w-full md:w-1/2">
           <div className="relative h-64 md:h-[400px] w-full rounded-lg overflow-hidden shadow-lg bg-gray-100">
             <img 
-              src="/event/14.jpg" 
+              src={heroImg}
               alt="Siswa LPK Maleo Gogakuin Palu sedang belajar bahasa Jepang" 
               className="absolute inset-0 h-full w-full object-cover"
               loading="lazy"
+              width={144}
+              height={144}
             />
           </div>
         </div>
