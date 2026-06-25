@@ -41,7 +41,6 @@ const HeroSection = ({ id }) => {
               src={heroImg}
               alt="Siswa LPK Maleo Gogakuin Palu sedang belajar bahasa Jepang" 
               className="absolute inset-0 h-full w-full object-cover"
-              {/* loading="lazy" */}
               width={144}
               height={144}
             />
