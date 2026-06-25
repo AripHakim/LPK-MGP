@@ -5,6 +5,8 @@ import HeroSection from './components/HeroSection';
 import Footer from './components/Footer';
 import BackToTopButton from './components/BackToTopButton';
 import { lazy, Suspense } from 'react';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 const AboutSection = lazy (() => import("./components/AboutSection"));
 const OrganizationSection = lazy (() => import("./components/OrganizationSection"));
@@ -78,6 +80,8 @@ function App() {
         </Routes>
         <Footer />
         <BackToTopButton />
+        <Analytics />
+        <SpeedInsights />
       </div>
     </Router>
   );
