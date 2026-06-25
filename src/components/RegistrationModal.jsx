@@ -23,7 +23,7 @@ const RegistrationModal = ({ isOpen, onClose }) => {
       }).then((result) => {
         if (result.isConfirmed) {
           window.open(
-            `https://wa.me/6282291570604?text=${encodeURIComponent(`Assalamualaikum warahmatullahi wabarakatuh...\nMohon maaf mengganggu waktunya kak.. Saya ingin bertanya mengenai informasi pendaftaran masuk kak..\nTerima kasih`)}`,
+            `https://wa.me/6282131223365?text=${encodeURIComponent(`Assalamualaikum warahmatullahi wabarakatuh...\nMohon maaf mengganggu waktunya kak.. Saya ingin bertanya mengenai informasi pendaftaran masuk kak..\nTerima kasih`)}`,
             '_blank'
           );
         } else if (result.isDenied) {
