@@ -6,7 +6,7 @@ import fadli from '../assets/hokage/fadli.webp';
 import apip from '../assets/hokage/apip.webp';
 import mas from '../assets/hokage/aji.webp';
 import fatir from '../assets/hokage/fatir.webp';
-import logo from '../assets/logo.webp';
+import logo from '/logo.svg';
 import { lazy, lazyLoad } from 'react';
 
 const GraduatedSection = ({ id }) => {
