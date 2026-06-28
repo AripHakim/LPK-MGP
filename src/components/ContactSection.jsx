@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import pin from '../assets/pin.webp';
 import fotoLPK from '../assets/lpk-maleo.webp';
 
+import { motion, AnimatePresence } from "framer-motion";
 
 const customIcon = L.icon({
   iconUrl: pin, 
@@ -14,39 +15,151 @@ const customIcon = L.icon({
   popupAnchor: [0, -32],
 });
 
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < breakpoint);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, [breakpoint]);
+
+  return isMobile;
+}
+
+function BottomSheet({ open, onClose, children }) {
+  return (
+    <AnimatePresence>
+      {open && (
+        <>
+          {/* overlay */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.4 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            style={{
+              position: "fixed",
+              inset: 0,
+              background: "#000",
+              zIndex: 999,
+            }}
+          />
+
+          {/* sheet */}
+          <motion.div
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{ type: "spring", damping: 20 }}
+            style={{
+              position: "fixed",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              background: "#fff",
+              borderTopLeftRadius: "16px",
+              borderTopRightRadius: "16px",
+              padding: "16px",
+              zIndex: 1000,
+              maxHeight: "60vh",
+              overflowY: "auto",
+            }}
+          >
+            
+            {/* 🔥 CLOSE BUTTON */}
+            <button
+              onClick={onClose}
+              style={{
+                position: "absolute",
+                top: 10,
+                right: 12,
+                border: "none",
+                background: "#f3f3f3",
+                width: 32,
+                height: 32,
+                borderRadius: "50%",
+                cursor: "pointer",
+                fontSize: 16,
+                fontWeight: "bold",
+              }}
+            >
+              ✕
+            </button>
+
+            {/* handle bar */}
+            <div
+              style={{
+                width: "40px",
+                height: "5px",
+                background: "#ccc",
+                borderRadius: "10px",
+                margin: "0 auto 10px",
+              }}
+            />
+
+            {children}
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+}
+
 const MapWithNoSSR = dynamic(
   () => import('react-leaflet').then((mod) => {
     const { MapContainer, TileLayer, Marker, Popup } = mod;
-    return function Map({ center, zoom }) {
+
+    return function Map({ center, zoom, setSheetOpen }) {
+      const isMobile = useIsMobile(); 
       return (
-        <MapContainer 
-          center={center} 
-          zoom={zoom} 
-          style={{ height: '100%', width: '100%', borderRadius: '0.375rem' }}
+        <MapContainer
+          center={center}
+          zoom={zoom}
+          style={{
+            height: '100%',
+            width: '100%',
+            borderRadius: '0.375rem'
+          }}
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            attribution='&copy; OpenStreetMap contributors'
           />
-          <Marker position={center} icon={customIcon} loading="lazy">
-            <Popup maxWidth={1600}>
-              <div style={{ textAlign: 'center', width: '100%' }}>
-                <img 
-                  src={fotoLPK} 
-                  alt="Foto LPK" 
-                  style={{
-                    width: '300px',
-                    height: '150px',
-                    maxWidth: '1550px',  
-                    borderRadius: '0.5rem',
-                    marginTop: '0.5rem'
-                  }}
-                  loading="lazy"
-                />
-              </div>
-            </Popup>
+
+          <Marker 
+            position={center} 
+            icon={customIcon}
+            eventHandlers={{
+                click: () => {
+                  if (isMobile) {
+                    setSheetOpen(true);
+                  }
+                },
+              }}
+            >
+            {!isMobile && (
+              <Popup maxWidth={300}>
+                <div style={{ textAlign: "center" }}>
+                  <img
+                    src={fotoLPK}
+                    alt="Foto LPK"
+                    style={{
+                      width: "250px",
+                      height: "140px",
+                      maxWidth: '1550px',  
+                      borderRadius: "0.5rem",
+                      marginTop: "0.8rem",
+                    }}
+                  />
+                </div>
+              </Popup>
+            )}
           </Marker>
         </MapContainer>
+
+        
       );
     };
   }),
@@ -56,6 +169,10 @@ const MapWithNoSSR = dynamic(
 const ContactSection = ({id}) => {
   const mapCenter = [-0.8879073, 119.8654517];
   const mapZoom = 17;
+
+  const isMobile = useIsMobile();
+  const [sheetOpen, setSheetOpen] = useState(false);
+
 
   const [formData, setFormData] = useState({
     name: '',
@@ -146,7 +263,11 @@ Terima kasih atas waktunya. 🙏`
 
               <div className="flex items-start">
                   <div className="h-56 md:h-64 w-full z-30">
-                    <MapWithNoSSR center={mapCenter} zoom={mapZoom} loading="lazy" />
+                    <MapWithNoSSR 
+                      center={mapCenter} 
+                      zoom={mapZoom} 
+                      setSheetOpen={setSheetOpen} 
+                    />
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -203,7 +324,36 @@ Terima kasih atas waktunya. 🙏`
                 </div>          
               </div>
             </div>     
-          </div>          
+          </div>   
+
+          <BottomSheet
+            open={sheetOpen}
+            onClose={() => setSheetOpen(false)}
+          >
+            <div style={{ textAlign: "center" }}>
+              <h3 style={{ fontWeight: "bold", marginBottom: 10 }}>
+                LPK Maleo Gogakuin
+              </h3>
+  
+              <img
+                src={fotoLPK}
+                alt="LPK"
+                style={{
+                  width: "100%",
+                  borderRadius: "10px",
+                  marginBottom: 10,
+                }}
+              />
+  
+              <p style={{ fontSize: 14, color: "#555" }}>
+                Jl. Undata No. 27, Palu
+              </p>
+              <p style={{ fontSize: 14, color: "#555" }}>
+                Depan Kantor Dinas Kesehatan <br /> Prov. Sulawesi Tengah
+              </p>
+            </div>
+          </BottomSheet>     
+            
           <div className="bg-white p-8 rounded-lg shadow-md">
             <h3 className="text-xl font-semibold text-primary-300 mb-6">Formulir Kontak</h3>
             <form onSubmit={handleSubmit} className="space-y-4">
