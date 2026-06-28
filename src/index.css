@@ -1,10 +1,6 @@
 @import "tailwindcss";
 
-/* ==================== */
-/* Theme Configuration */
-/* ==================== */
 @theme {
-  /* Primary Color Palette */
   --color-primary: #2238A6;
   --color-primary-100: #070b21;
   --color-primary-200: #0e1642;
@@ -16,7 +12,6 @@
   --color-primary-800: #98a5ea;
   --color-primary-900: #cbd2f4;
 
-  /* Secondary Color Palette */
   --color-secondary: #F6B211;
   --color-secondary-100: #332402;
   --color-secondary-200: #664904;
@@ -28,7 +23,6 @@
   --color-secondary-800: #fce0a1;
   --color-secondary-900: #fdf0d0;
 
-  /* Maize Color Palette */
   --color-maize: #F7E95D;
   --color-maize-100: #413c03;
   --color-maize-200: #837806;
@@ -41,15 +35,12 @@
   --color-maize-900: #fdfbdf;
 }
 
-/* ==================== */
-/* Base Styles (Modified) */
-/* ==================== */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
   height: 100%;
   width: 100%;
-  overflow-x: clip; /* Safer than hidden for sticky elements */
+  overflow-x: clip; 
 }
 
 body {
@@ -57,12 +48,9 @@ body {
   padding: 0;
   min-height: 100%;
   position: relative;
-  overflow-x: clip; /* Crucial for sticky elements */
+  overflow-x: clip; 
 }
 
-/* ====================*/
-/* Navbar Sticky Fix   */
-/* ====================*/
 header.sticky-nav {
   position: sticky;
   top: 0;
@@ -72,9 +60,6 @@ header.sticky-nav {
   -webkit-transform: translate3d(0,0,0);
 }
 
-/* ==================== */
-/* Mobile Styles (Fixed) */
-/* ==================== */
 @media (max-width: 768px) {
   html, body {
     width: 100%;
@@ -86,10 +71,6 @@ header.sticky-nav {
   }
 }
 
-
-/* ==================== */
-/* Existing Styles      */
-/* ==================== */
 section[id] {
   position: relative;
   scroll-margin-top: 100px;

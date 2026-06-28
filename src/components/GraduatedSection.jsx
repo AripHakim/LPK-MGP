@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import graduatesData from "../data/graduates.json";
 import fadli from '../assets/hokage/fadli.webp';
 import apip from '../assets/hokage/apip.webp';
 import mas from '../assets/hokage/aji.webp';
@@ -16,150 +17,170 @@ const GraduatedSection = ({ id }) => {
   const [isFallback, setIsFallback] = useState(false);
   const [showFallbackMessage, setShowFallbackMessage] = useState(false);
 
-  useEffect(() => {
-    const fetchGraduates = async () => {
-      try {
-        const response = await fetch('https://maleo-be.onrender.com/api/lulus');
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const responseData = await response.json();
-        const data = responseData.data || [];
+  const imageMap = {
+    fadli,
+    mas,
+    fatir,
+    apip,
+    logo,
+  };
+  
+  // useEffect(() => {
+  //   const fetchGraduates = async () => {
+  //     try {
+  //       const response = await fetch('https://maleo-be.onrender.com/api/lulus');
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! status: ${response.status}`);
+  //       }
+  //       const responseData = await response.json();
+  //       const data = responseData.data || [];
 
-        const cleanData = data
-          .filter(item => item["番号"] !== "番号") 
-          .map(item => {
-            const cleanInterviewDate = item["面接合格日"]
-              ? item["面接合格日"]
-                  .replace(/\s+/g, ' ')
-                  .replace(/　/g, ' ') 
-                  .trim()
-              : '';
+  //       const cleanData = data
+  //         .filter(item => item["番号"] !== "番号") 
+  //         .map(item => {
+  //           const cleanInterviewDate = item["面接合格日"]
+  //             ? item["面接合格日"]
+  //                 .replace(/\s+/g, ' ')
+  //                 .replace(/　/g, ' ') 
+  //                 .trim()
+  //             : '';
             
-            const cleanDepartureDate = item["日本への出発日"] 
-              ? item["日本への出発日"]
-                  .replace(/\s+/g, ' ')
-                  .replace(/　/g, ' ')
-                  .trim()
-              : null;
+  //           const cleanDepartureDate = item["日本への出発日"] 
+  //             ? item["日本への出発日"]
+  //                 .replace(/\s+/g, ' ')
+  //                 .replace(/　/g, ' ')
+  //                 .trim()
+  //             : null;
             
-            let imageUrl = '/logo.png';
-            if (item["写真"] && item["写真"].includes('drive.google.com')) {
-              const match = item["写真"].match(/\/(?:file\/d\/|open\?id=)([\w-]+)/);
-              if (match && match[1]) {
-                imageUrl = `https://drive.google.com/thumbnail?id=${match[1]}&sz=w300-h400`;
-              } else {
-                console.warn("Couldn't extract Google Drive ID from:", item["写真"]);
-              }
-            }
+  //           let imageUrl = '/logo.png';
+  //           if (item["写真"] && item["写真"].includes('drive.google.com')) {
+  //             const match = item["写真"].match(/\/(?:file\/d\/|open\?id=)([\w-]+)/);
+  //             if (match && match[1]) {
+  //               imageUrl = `https://drive.google.com/thumbnail?id=${match[1]}&sz=w300-h400`;
+  //             } else {
+  //               console.warn("Couldn't extract Google Drive ID from:", item["写真"]);
+  //             }
+  //           }
             
-            return {
-              id: item["番号"],
-              name: item["名前"],
-              address: item["住所"] || null,
-              company: item["会社名"],
-              interviewDate: cleanInterviewDate,
-              departureDate: cleanDepartureDate,
-              image: imageUrl
-            };
-          });
+  //           return {
+  //             id: item["番号"],
+  //             name: item["名前"],
+  //             address: item["住所"] || null,
+  //             company: item["会社名"],
+  //             interviewDate: cleanInterviewDate,
+  //             departureDate: cleanDepartureDate,
+  //             image: imageUrl
+  //           };
+  //         });
           
-        setGraduates(cleanData); 
-      } catch (err) {
-        console.error('Error fetching graduates:', err);
-        setIsFallback(true);
-        setShowFallbackMessage(true);
+  //       setGraduates(cleanData); 
+  //     } catch (err) {
+  //       console.error('Error fetching graduates:', err);
+  //       setIsFallback(true);
+  //       setShowFallbackMessage(true);
 
-        setGraduates([
-          {
-            id: "1",
-            name: "MUHHAMAD FADLI",
-            address: null,
-            company: "IGISHI KOGYO CO.,LTD",
-            interviewDate: "2 November 2024",
-            departureDate: "14 April 2025",
-            image: fadli
-          },
-          {
-            id: "2",
-            name: "AJI DWI PURNAMA PUTRA",
-            address: null,
-            company: "YUUSHOU CO.,LTD",
-            interviewDate: "18 Desember 2024",
-            departureDate: null,
-            image: mas
-          },
-          {
-            id: "3",
-            name: "MOH. FATHIR",
-            address: null,
-            company: "YUUSHOU CO.,LTD",
-            interviewDate: "18 Desember 2024",
-            departureDate: null,
-            image: fatir
-          }
-          ,
-          {
-            id: "4",
-            name: "ADZIAN AFIF",
-            address: null,
-            company: "YAMAMARU FUJI",
-            interviewDate: "7 Februari 2025",
-            departureDate: null,
-            image: apip
-          }
-          ,
-          {
-            id: "5",
-            name: "RAYYAN MEIZAR RABBANI",
-            address: null,
-            company: "KABUSHIKI GAISHA NAKASONE KOGYO Co., Ltd.",
-            interviewDate: "8 Mei 2025",
-            departureDate: null,
-            image: logo
-          }
-          ,
-          {
-            id: "6",
-            name: "FATUR RAHMAN",
-            address: null,
-            company: "KABUSHIKI GAISHA NAKASONE KOGYO Co., Ltd.",
-            interviewDate: "8 Mei 2025",
-            departureDate: null,
-            image: logo
-          }
-          ,
-          {
-            id: "7",
-            name: "MOH. ADRIE",
-            address: null,
-            company: "KABUSHIKI GAISHA SUZUKI KOGYO",
-            interviewDate: "2 Juni 2025",
-            departureDate: null,
-            image: logo
-          }
-          ,
-          {
-            id: "8",
-            name: "ARHAM AR SABRY",
-            address: null,
-            company: "KABUSHIKI GAISHA SUZUKI KOGYO",
-            interviewDate: "2 Juni 2025",
-            departureDate: null,
-            image: logo
-          }
-        ]);
+  //       setGraduates([
+  //         {
+  //           id: "1",
+  //           name: "MUHHAMAD FADLI",
+  //           address: null,
+  //           company: "IGISHI KOGYO CO.,LTD",
+  //           interviewDate: "2 November 2024",
+  //           departureDate: "14 April 2025",
+  //           image: fadli
+  //         },
+  //         {
+  //           id: "2",
+  //           name: "AJI DWI PURNAMA PUTRA",
+  //           address: null,
+  //           company: "YUUSHOU CO.,LTD",
+  //           interviewDate: "18 Desember 2024",
+  //           departureDate: null,
+  //           image: mas
+  //         },
+  //         {
+  //           id: "3",
+  //           name: "MOH. FATHIR",
+  //           address: null,
+  //           company: "YUUSHOU CO.,LTD",
+  //           interviewDate: "18 Desember 2024",
+  //           departureDate: null,
+  //           image: fatir
+  //         }
+  //         ,
+  //         {
+  //           id: "4",
+  //           name: "ADZIAN AFIF",
+  //           address: null,
+  //           company: "YAMAMARU FUJI",
+  //           interviewDate: "7 Februari 2025",
+  //           departureDate: null,
+  //           image: apip
+  //         }
+  //         ,
+  //         {
+  //           id: "5",
+  //           name: "RAYYAN MEIZAR RABBANI",
+  //           address: null,
+  //           company: "KABUSHIKI GAISHA NAKASONE KOGYO Co., Ltd.",
+  //           interviewDate: "8 Mei 2025",
+  //           departureDate: null,
+  //           image: logo
+  //         }
+  //         ,
+  //         {
+  //           id: "6",
+  //           name: "FATUR RAHMAN",
+  //           address: null,
+  //           company: "KABUSHIKI GAISHA NAKASONE KOGYO Co., Ltd.",
+  //           interviewDate: "8 Mei 2025",
+  //           departureDate: null,
+  //           image: logo
+  //         }
+  //         ,
+  //         {
+  //           id: "7",
+  //           name: "MOH. ADRIE",
+  //           address: null,
+  //           company: "KABUSHIKI GAISHA SUZUKI KOGYO",
+  //           interviewDate: "2 Juni 2025",
+  //           departureDate: null,
+  //           image: logo
+  //         }
+  //         ,
+  //         {
+  //           id: "8",
+  //           name: "ARHAM AR SABRY",
+  //           address: null,
+  //           company: "KABUSHIKI GAISHA SUZUKI KOGYO",
+  //           interviewDate: "2 Juni 2025",
+  //           departureDate: null,
+  //           image: logo
+  //         }
+  //       ]);
 
-        setTimeout(() => {
-          setShowFallbackMessage(false);
-        }, 2000);
-      } finally {
-        setLoading(false);
-      }
-    };
+  //       setTimeout(() => {
+  //         setShowFallbackMessage(false);
+  //       }, 2000);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchGraduates();
-  }, []);
+  //   fetchGraduates();
+  // }, []);
+
+  useEffect(() => {
+  setIsFallback(true);
+
+  const graduates = graduatesData.map(item => ({
+    ...item,
+    image: imageMap[item.image] || logo,
+  }));
+
+  setGraduates(graduates);
+  setLoading(false);
+}, []);
 
 
   const settings = {

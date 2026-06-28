@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import graduatesData from "../data/graduates.json";
+import { HashLink } from 'react-router-hash-link';
 
 const AboutSection = ({ id }) => {
   const [graduates, setGraduates] = useState([]);
@@ -23,29 +25,38 @@ const AboutSection = ({ id }) => {
     "Pengalaman Kerja Internasional",
   ];
 
-  useEffect(() => {
-    const fetchGraduates = async () => {
-      try {
-        const response = await fetch('https://maleo-be.onrender.com/lulus.json');
-        if (!response.ok) throw new Error('Gagal memuat data');
+  // useEffect(() => {
+  //   const fetchGraduates = async () => {
+  //     try {
+  //       const response = await fetch('https://maleo-be.onrender.com/lulus.json');
+  //       if (!response.ok) throw new Error('Gagal memuat data');
         
-        const data = await response.json();
-        const filteredData = data.filter(item => item["番号"] !== "番号");
-        setGraduates(filteredData);
-      } catch (err) {
-        console.error("Error:", err);
-        setError(err.message);
-        setGraduates([
-          { "番号": "1", "名前": "MUHHAMAD FADLI" },
-          { "番号": "2", "名前": "AJI DWI PURNAMA PUTRA" },
-        ]);
-      } finally {
-        setLoading(false);
-      }
-    };
+  //       const data = await response.json();
+  //       const filteredData = data.filter(item => item["番号"] !== "番号");
+  //       setGraduates(filteredData);
+  //     } catch (err) {
+  //       console.error("Error:", err);
+  //       setError(err.message);
+  //       setGraduates([
+  //         { "番号": "1", "名前": "MUHHAMAD FADLI" },
+  //         { "番号": "2", "名前": "AJI DWI PURNAMA PUTRA" },
+  //       ]);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchGraduates();
-  }, []);
+  //   fetchGraduates();
+  // }, []);
+
+  useEffect(() => {
+  const filteredData = graduatesData.filter(
+    item => item["id"] !== "id"
+  );
+
+  setGraduates(filteredData);
+  setLoading(false);
+}, []);
 
   return (
     <section className="py-12 bg-white">
@@ -74,6 +85,7 @@ const AboutSection = ({ id }) => {
               </div>
               <div className="flex-1 flex justify-between items-center">
                 <h3 className="text-md font-semibold text-primary-400">Peserta yang lulus</h3>
+                <HashLink  to="#lulusan">
                 {loading ? (
                   <div className="animate-pulse h-6 w-10 bg-gray-200 rounded"></div>
                 ) : error ? (
@@ -83,6 +95,7 @@ const AboutSection = ({ id }) => {
                     {graduates.length} Orang
                   </p>
                 )}
+                </HashLink>
               </div>
             </div>          
             <div className="flex items-center gap-3 mb-4">

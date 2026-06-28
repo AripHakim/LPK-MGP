@@ -99,7 +99,7 @@ const OrganizationSection = ({ id }) => {
                     src={organizationItems[1].image} 
                     alt={organizationItems[1].name}
                     width={96}
-                  height={96}
+                    height={96}
                     className="w-full h-full object-cover object-[10%_10%]"
                     onError={(e) => {
                       e.target.onerror = null; 
@@ -122,8 +122,8 @@ const OrganizationSection = ({ id }) => {
                       <img 
                         src={item.image} 
                         alt={item.name} 
-                       width={96}
-                  height={96} 
+                        width={96}
+                        height={96} 
                         className="w-full h-full object-cover object-[10%_10%]"
                         onError={(e) => {
                           e.target.onerror = null; 
@@ -149,8 +149,8 @@ const OrganizationSection = ({ id }) => {
                   <img 
                     src={organizationItems[2].image} 
                     alt={organizationItems[2].name}
-                     width={96}
-                  height={96}
+                    width={96}
+                    height={96}
                     className="w-full h-full object-cover object-[10%_10%]"
                     onError={(e) => {
                       e.target.onerror = null; 
@@ -173,8 +173,8 @@ const OrganizationSection = ({ id }) => {
                       <img 
                         src={item.image} 
                         alt={item.name} 
-                         width={96}
-                  height={96}
+                        width={96}
+                        height={96}
                         className="w-full h-full object-cover object-[10%_40%]"
                         onError={(e) => {
                           e.target.onerror = null; 

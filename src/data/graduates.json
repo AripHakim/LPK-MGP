@@ -1,0 +1,74 @@
+[
+    {
+      "id": "1",
+      "name": "MUHHAMAD FADLI",
+      "address": null,
+      "company": "IGISHI KOGYO CO.,LTD",
+      "interviewDate": "2 November 2024",
+      "departureDate": "14 April 2025",
+      "image": "fadli"
+    },
+    {
+      "id": "2",
+      "name": "AJI DWI PURNAMA PUTRA",
+      "address": null,
+      "company": "YUUSHOU CO.,LTD",
+      "interviewDate": "18 Desember 2024",
+      "departureDate": null,
+      "image": "mas"
+    },
+    {
+      "id": "3",
+      "name": "MOH. FATHIR",
+      "address": null,
+      "company": "YUUSHOU CO.,LTD",
+      "interviewDate": "18 Desember 2024",
+      "departureDate": null,
+      "image": "fatir"
+    },
+    {
+      "id": "4",
+      "name": "ADZIAN AFIF",
+      "address": null,
+      "company": "YAMAMARU FUJI",
+      "interviewDate": "7 Februari 2025",
+      "departureDate": null,
+      "image": "apip"
+    },
+    {
+      "id": "5",
+      "name": "RAYYAN MEIZAR RABBANI",
+      "address": null,
+      "company": "KABUSHIKI GAISHA NAKASONE KOGYO Co., Ltd.",
+      "interviewDate": "8 Mei 2025",
+      "departureDate": null,
+      "image": "logo"
+    },
+    {
+      "id": "6",
+      "name": "FATUR RAHMAN",
+      "address": null,
+      "company": "KABUSHIKI GAISHA NAKASONE KOGYO Co., Ltd.",
+      "interviewDate": "8 Mei 2025",
+      "departureDate": null,
+      "image": "logo"
+    },
+    {
+      "id": "7",
+      "name": "MOH. ADRIE",
+      "address": null,
+      "company": "KABUSHIKI GAISHA SUZUKI KOGYO",
+      "interviewDate": "2 Juni 2025",
+      "departureDate": null,
+      "image": "logo"
+    },
+    {
+      "id": "8",
+      "name": "ARHAM AR SABRY",
+      "address": null,
+      "company": "KABUSHIKI GAISHA SUZUKI KOGYO",
+      "interviewDate": "2 Juni 2025",
+      "departureDate": null,
+      "image": "logo"
+    }
+]
