@@ -2,9 +2,39 @@ import { useState } from 'react';
 import { HashLink } from 'react-router-hash-link';
 import RegistrationModal from './RegistrationModal';
 import heroImg from '../assets/event/hero-img.webp';
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+
+const mediaSlides = [
+  {
+    type: "image",
+    src: heroImg,
+    alt: "Siswa LPK Maleo Gogakuin Palu sedang belajar bahasa Jepang",
+  },
+  {
+    type: "video",
+    src: "/videos/video-website.mp4",
+    alt: "Video dokumentasi kegiatan LPK Maleo Gogakuin Palu",
+  },
+];
 
 const HeroSection = ({ id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % mediaSlides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex(
+      (prev) => (prev - 1 + mediaSlides.length) % mediaSlides.length
+    );
+  };
+
+  const currentMedia = mediaSlides[currentIndex];
+
 
   return (
     <section id={id} className="py-10 bg-gradient-to-r from-primary-50 to-indigo-50">
@@ -35,17 +65,71 @@ const HeroSection = ({ id }) => {
             </HashLink>
           </div>
         </div>
+
         <div className="w-full md:w-1/2">
-          <div className="relative h-64 md:h-[400px] w-full rounded-lg overflow-hidden shadow-lg bg-gray-100">
-            <img 
-              src={heroImg}
-              alt="Siswa LPK Maleo Gogakuin Palu sedang belajar bahasa Jepang" 
-              className="absolute inset-0 h-full w-full object-cover"
-              width={144}
-              height={144}
+      <div className="relative h-64 md:h-[400px] w-full rounded-lg overflow-hidden shadow-lg bg-gray-100 group">
+
+        {/* Media */}
+        {currentMedia.type === "image" ? (
+          <img
+            src={currentMedia.src}
+            alt={currentMedia.alt}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        ) : (
+          <video
+            key={currentMedia.src}
+            src={currentMedia.src}
+            controls
+            playsInline
+            preload="metadata"
+            className="absolute inset-0 h-full w-full object-cover"
+          >   <source src={currentMedia.src} type="video/mp4" />
+
+            Browser Anda tidak mendukung video.
+          </video>
+        )}
+
+        {/* Previous Button */}
+        <button
+          onClick={prevSlide}
+          aria-label="Media sebelumnya"
+          className="absolute left-3 top-1/2 -translate-y-1/2 z-10
+          bg-black/50 hover:bg-black/70 text-white
+          p-2 rounded-full transition-all"
+        >
+          <ChevronLeft size={24} />
+        </button>
+
+        {/* Next Button */}
+        <button
+          onClick={nextSlide}
+          aria-label="Media berikutnya"
+          className="absolute right-3 top-1/2 -translate-y-1/2 z-10
+          bg-black/50 hover:bg-black/70 text-white
+          p-2 rounded-full transition-all"
+        >
+          <ChevronRight size={24} />
+        </button>
+
+        {/* Indicators */}
+        <div className="absolute bottom-4 left-0 right-0 z-10 flex justify-center gap-2">
+          {mediaSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              aria-label={`Lihat media ${index + 1}`}
+              className={`h-2 rounded-full transition-all ${
+                currentIndex === index
+                  ? "w-6 bg-white"
+                  : "w-2 bg-white/50 hover:bg-white"
+              }`}
             />
-          </div>
+          ))}
         </div>
+
+      </div>
+    </div>
       </div>
 
       <RegistrationModal 
