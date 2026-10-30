@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/lpkd7377/public_html
+    - /bin/mkdir -p $DEPLOYPATH
+    - /bin/cp -R dist/. $DEPLOYPATH/
