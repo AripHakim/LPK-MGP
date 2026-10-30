@@ -44,7 +44,7 @@ const HeroSection = ({ id }) => {
             Selamat Datang di <span className="text-secondary-600">LPK MALEO GOGAKUIN PALU</span>
           </h1>
           <p className="text-sm lg:text-md text-primary-200 mb-2 text-justify">
-            LPK MALEO GOGAKUIN PALU bekerjasama dengan (SO) PT TERATAI GOGAKUIN merupakan salah satu lembaga yang berdiri untuk memberikan pelatihan khusus bagi orang-orang yang ingin bekerja ke Jepang. 
+            LPK MALEO GOGAKUIN PALU merupakan salah satu lembaga yang berdiri untuk memberikan pelatihan khusus bagi orang-orang yang ingin bekerja ke Jepang. 
           </p>
           <h3 className="text-md font-bold text-secondary">
             AYO BERKARIR KE JEPANG BERSAMA LPK MALEO GOGAKUIN PALU
