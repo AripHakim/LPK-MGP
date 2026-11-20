@@ -37,7 +37,7 @@
   },
   {
     "id": "5",
-    "name": "RAYYAN MEIZAR RABBANI",
+    "name": "RAYAN MEIZAR RABBANI",
     "address": null,
     "company": "KABUSHIKI GAISHA NAKASONE KOUGYOU",
     "interviewDate": "8 Mei 2025",
@@ -64,19 +64,19 @@
   },
   {
     "id": "8",
-    "name": "DEVI MAHARANI RANDIOTA. A",
+    "name": "DEVI MAHARANI RANDATA. A",
     "address": null,
-    "company": "YUUGEN GAISHA MARUHON KOUICHI GYOGYOU",
-    "interviewDate": "17 April 2025",
+    "company": "YUUGEN GAISHA MARUHON KONICHI GYOGYOU",
+    "interviewDate": "17 Juni 2025",
     "departureDate": null,
     "image": "logo"
   },
   {
     "id": "9",
-    "name": "KRESNA APRIADI TANGGOWI",
+    "name": "KRISLIN APRISELA TANGOWI",
     "address": null,
-    "company": "YUUGEN GAISHA MARUHON KOUICHI GYOGYOU",
-    "interviewDate": "17 April 2025",
+    "company": "YUUGEN GAISHA MARUHON KONICHI GYOGYOU",
+    "interviewDate": "17 Juni 2025",
     "departureDate": null,
     "image": "logo"
   },
@@ -129,7 +129,7 @@
     "id": "15",
     "name": "FATIR RAHMAN",
     "address": null,
-    "company": "YUUGEN GAISHA TAKA KOUMUTEN",
+    "company": "YUUGEN GAISHA TAKA KOMUTEN",
     "interviewDate": "24 September 2025",
     "departureDate": null,
     "image": "logo"
@@ -138,7 +138,7 @@
     "id": "16",
     "name": "FAIS ADITIA MAULANA",
     "address": null,
-    "company": "YUUGEN GAISHA TAKA KOUMUTEN",
+    "company": "YUUGEN GAISHA TAKA KOMUTEN",
     "interviewDate": "24 September 2025",
     "departureDate": null,
     "image": "logo"
@@ -190,9 +190,9 @@
   },
   {
     "id": "22",
-    "name": "MOH. HASAN BASRI DATU",
+    "name": "MOH. HASAN BASRI DURIN",
     "address": null,
-    "company": "JUN'EI KENSETSU KABUSHIKI GAISHA",
+    "company": "JUN'EI KESETSU KABUSHIKI GAISHA",
     "interviewDate": "5 November 2025",
     "departureDate": null,
     "image": "logo"
@@ -226,7 +226,7 @@
   },
   {
     "id": "26",
-    "name": "ZULFADIN",
+    "name": "ZULFIADIN",
     "address": null,
     "company": "KABUSHIKI GAISHA KUBOGUMI",
     "interviewDate": "22 Desember 2025",
@@ -237,7 +237,7 @@
     "id": "27",
     "name": "AGIM MAFTU",
     "address": null,
-    "company": "YUUGENGAISHA KOA KOUGYOU",
+    "company": "YUUGENGAISHA KOUGYOU",
     "interviewDate": "22 Desember 2025",
     "departureDate": null,
     "image": "logo"
@@ -246,7 +246,7 @@
     "id": "28",
     "name": "ALFIAN HAIKAL",
     "address": null,
-    "company": "YUUGENGAISHA KOA KOUGYOU",
+    "company": "YUUGENGAISHA KOUGYOU",
     "interviewDate": "22 Desember 2025",
     "departureDate": null,
     "image": "logo"
@@ -262,7 +262,7 @@
   },
   {
     "id": "30",
-    "name": "AAFIF AL FAUZI",
+    "name": "AUFF AL FAUZI",
     "address": null,
     "company": "KABUSHIKI GAISHA WA KOUGYOU",
     "interviewDate": "21 Januari 2026",
@@ -271,7 +271,7 @@
   },
   {
     "id": "31",
-    "name": "PARIDIN",
+    "name": "PONIDIN",
     "address": null,
     "company": "KABUSHIKI GAISHA WA KOUGYOU",
     "interviewDate": "21 Januari 2026",
@@ -289,7 +289,7 @@
   },
   {
     "id": "33",
-    "name": "FAHRI FAHREZI JANNAS",
+    "name": "FAHRI FAHREZI JUNUS",
     "address": null,
     "company": "SHIBAYAMA KOUGYOU KABUSHIKI GAISHA",
     "interviewDate": "29 Januari 2026",
@@ -298,7 +298,7 @@
   },
   {
     "id": "34",
-    "name": "MUHAIDIL YAKZAN",
+    "name": "MICHELL YOKASIRA",
     "address": null,
     "company": "HOSHINOKENSETSU KABUSHIKI GAISHA",
     "interviewDate": "18 Desember 2025",
@@ -307,16 +307,16 @@
   },
   {
     "id": "35",
-    "name": "SALMA AULIYA",
+    "name": "SALMA AUDYNA",
     "address": null,
-    "company": "YUUGEN GAISHA KANEMARU KUDO SUISAN",
+    "company": "YUUGEN GAISHA KANENIKU KUDO SUISAN",
     "interviewDate": "9 Februari 2026",
     "departureDate": null,
     "image": "logo"
   },
   {
     "id": "36",
-    "name": "AHMADI",
+    "name": "AHMADE",
     "address": null,
     "company": "KABUSHIKI GAISHA RC HIGH TECH",
     "interviewDate": "17 Februari 2026",
@@ -325,7 +325,7 @@
   },
   {
     "id": "37",
-    "name": "MICHAEL FERNANDES WULA",
+    "name": "MICHAEL FERNANDES WULO",
     "address": null,
     "company": "YUUGEN GAISHA FUNAMOTO KOUGYO",
     "interviewDate": "25 Desember 2026",
@@ -334,7 +334,7 @@
   },
   {
     "id": "38",
-    "name": "MOH. MUTASHIM",
+    "name": "MOH. MUTAALIMIN",
     "address": null,
     "company": "YUUGEN GAISHA FUNAMOTO KOUGYO",
     "interviewDate": "25 Desember 2026",
@@ -343,9 +343,9 @@
   },
   {
     "id": "39",
-    "name": "KHOERUL SYAFI'IE",
+    "name": "KHAERUL SYAFAR",
     "address": null,
-    "company": "CHUO TEKKOU KABUSHIKI GAISHA",
+    "company": "CHOU TEKKEN KABUSHIKI GAISHA",
     "interviewDate": "8 April 2026",
     "departureDate": null,
     "image": "logo"
@@ -354,14 +354,14 @@
     "id": "40",
     "name": "MOH. RIZKI",
     "address": null,
-    "company": "CHUO TEKKOU KABUSHIKI GAISHA",
+    "company": "CHOU TEKKEN KABUSHIKI GAISHA",
     "interviewDate": "8 April 2026",
     "departureDate": null,
     "image": "logo"
   },
   {
     "id": "41",
-    "name": "MUZAMIL HIDAYAT",
+    "name": "MUIZZUL HIDAYAT",
     "address": null,
     "company": "IGISHI KOUGYO KABUSHIKI GAISHA",
     "interviewDate": "27 April 2025",
@@ -379,7 +379,7 @@
   },
   {
     "id": "43",
-    "name": "ARIF RAHMADI",
+    "name": "ARIF ROHMADI",
     "address": null,
     "company": "IGISHI KOUGYO KABUSHIKI GAISHA",
     "interviewDate": "27 April 2025",
@@ -388,7 +388,7 @@
   },
   {
     "id": "44",
-    "name": "ARIE BUDIMAN",
+    "name": "ARIS BUDIMAN",
     "address": null,
     "company": "YUUGEN GAISHA SOHTETSU",
     "interviewDate": "25 Mei 2026",
@@ -397,9 +397,9 @@
   },
   {
     "id": "45",
-    "name": "SEPTIYADI DARMA",
+    "name": "SEPTIYADI DUMA",
     "address": null,
-    "company": "KABUSHIKI GAISHA TOHWAKENSETSU",
+    "company": "KABUSHIKI GAISHA TOHWAKENKOUSYA",
     "interviewDate": "29 Mei 2026",
     "departureDate": null,
     "image": "logo"
@@ -408,7 +408,7 @@
     "id": "46",
     "name": "LUTFI SUHAILI",
     "address": null,
-    "company": "KABUSHIKI GAISHA TOHWAKENSETSU",
+    "company": " KABUSHIKI GAISHA TOHWAKENKOUSYA",
     "interviewDate": "29 Mei 2026",
     "departureDate": null,
     "image": "logo"

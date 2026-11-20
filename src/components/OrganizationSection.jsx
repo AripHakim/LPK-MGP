@@ -20,12 +20,12 @@ const OrganizationSection = ({ id }) => {
       position: "STAFF",
       image: isma
     },
-    {
-      id: 3,
-      name: "DAHLIA",
-      position: "INSTRUKTUR",
-      image: dahlia
-    },
+    // {
+    //   id: 3,
+    //   name: "DAHLIA",
+    //   position: "INSTRUKTUR",
+    //   image: dahlia
+    // },
     {
       id: 4,
       name: "FARAZ SALSABILAH. R",
