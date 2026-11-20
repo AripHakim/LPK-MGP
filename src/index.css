@@ -109,3 +109,18 @@ section[id] {
     height: auto;
   }
 }
+
+.slick-dots {
+  position: relative !important;
+  bottom: 0 !important;
+  margin-top: 16px !important;
+  display: flex !important;
+  justify-content: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.slick-dots::-webkit-scrollbar {
+  display: none;
+}

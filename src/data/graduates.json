@@ -1,74 +1,416 @@
 [
-    {
-      "id": "1",
-      "name": "MUHHAMAD FADLI",
-      "address": null,
-      "company": "IGISHI KOGYO CO.,LTD",
-      "interviewDate": "2 November 2024",
-      "departureDate": "14 April 2025",
-      "image": "fadli"
-    },
-    {
-      "id": "2",
-      "name": "AJI DWI PURNAMA PUTRA",
-      "address": null,
-      "company": "YUUSHOU CO.,LTD",
-      "interviewDate": "18 Desember 2024",
-      "departureDate": null,
-      "image": "mas"
-    },
-    {
-      "id": "3",
-      "name": "MOH. FATHIR",
-      "address": null,
-      "company": "YUUSHOU CO.,LTD",
-      "interviewDate": "18 Desember 2024",
-      "departureDate": null,
-      "image": "fatir"
-    },
-    {
-      "id": "4",
-      "name": "ADZIAN AFIF",
-      "address": null,
-      "company": "YAMAMARU FUJI",
-      "interviewDate": "7 Februari 2025",
-      "departureDate": null,
-      "image": "apip"
-    },
-    {
-      "id": "5",
-      "name": "RAYYAN MEIZAR RABBANI",
-      "address": null,
-      "company": "KABUSHIKI GAISHA NAKASONE KOGYO Co., Ltd.",
-      "interviewDate": "8 Mei 2025",
-      "departureDate": null,
-      "image": "logo"
-    },
-    {
-      "id": "6",
-      "name": "FATUR RAHMAN",
-      "address": null,
-      "company": "KABUSHIKI GAISHA NAKASONE KOGYO Co., Ltd.",
-      "interviewDate": "8 Mei 2025",
-      "departureDate": null,
-      "image": "logo"
-    },
-    {
-      "id": "7",
-      "name": "MOH. ADRIE",
-      "address": null,
-      "company": "KABUSHIKI GAISHA SUZUKI KOGYO",
-      "interviewDate": "2 Juni 2025",
-      "departureDate": null,
-      "image": "logo"
-    },
-    {
-      "id": "8",
-      "name": "ARHAM AR SABRY",
-      "address": null,
-      "company": "KABUSHIKI GAISHA SUZUKI KOGYO",
-      "interviewDate": "2 Juni 2025",
-      "departureDate": null,
-      "image": "logo"
-    }
+  {
+    "id": "1",
+    "name": "MUHAMMAD FADLI",
+    "address": null,
+    "company": "IGISHI KOGYO CO.,LTD",
+    "interviewDate": "2 November 2024",
+    "departureDate": "14 April 2025",
+    "image": "fadli"
+  },
+  {
+    "id": "2",
+    "name": "ADJI DWI PURNAMA PUTRA",
+    "address": null,
+    "company": "YUUSHOU CO.,LTD",
+    "interviewDate": "18 Desember 2024",
+    "departureDate": null,
+    "image": "mas"
+  },
+  {
+    "id": "3",
+    "name": "MOH. FATHIR",
+    "address": null,
+    "company": "YUUSHOU CO.,LTD",
+    "interviewDate": "18 Desember 2024",
+    "departureDate": null,
+    "image": "fatir"
+  },
+  {
+    "id": "4",
+    "name": "ADZIAN AFIF",
+    "address": null,
+    "company": "YAMAMARU FUJI",
+    "interviewDate": "7 Februari 2025",
+    "departureDate": null,
+    "image": "apip"
+  },
+  {
+    "id": "5",
+    "name": "RAYYAN MEIZAR RABBANI",
+    "address": null,
+    "company": "KABUSHIKI GAISHA NAKASONE KOUGYOU",
+    "interviewDate": "8 Mei 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "6",
+    "name": "FATUR RAHMAN",
+    "address": null,
+    "company": "KABUSHIKI GAISHA NAKASONE KOUGYOU",
+    "interviewDate": "8 Mei 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "7",
+    "name": "MOH. ADRIE",
+    "address": null,
+    "company": null,
+    "interviewDate": null,
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "8",
+    "name": "DEVI MAHARANI RANDIOTA. A",
+    "address": null,
+    "company": "YUUGEN GAISHA MARUHON KOUICHI GYOGYOU",
+    "interviewDate": "17 April 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "9",
+    "name": "KRESNA APRIADI TANGGOWI",
+    "address": null,
+    "company": "YUUGEN GAISHA MARUHON KOUICHI GYOGYOU",
+    "interviewDate": "17 April 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "10",
+    "name": "MOH. HAIKAL",
+    "address": null,
+    "company": "YUUGENGAISHA KOGADOU",
+    "interviewDate": "24 Juni 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "11",
+    "name": "MOH. EDRI",
+    "address": null,
+    "company": "YUUGENGAISHA KOGADOU",
+    "interviewDate": "24 Juni 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "12",
+    "name": "MOH. AFANDY",
+    "address": null,
+    "company": "HARADA TAIKI",
+    "interviewDate": "10 Juli 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "13",
+    "name": "AGUNG MAULANA PUTRA",
+    "address": null,
+    "company": "KABUSHIKI GAISHA DAIWA GIKEN",
+    "interviewDate": "14 Juli 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "14",
+    "name": "FAREL",
+    "address": null,
+    "company": "KABUSHIKI GAISHA DAIWA GIKEN",
+    "interviewDate": "14 Juli 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "15",
+    "name": "FATIR RAHMAN",
+    "address": null,
+    "company": "YUUGEN GAISHA TAKA KOUMUTEN",
+    "interviewDate": "24 September 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "16",
+    "name": "FAIS ADITIA MAULANA",
+    "address": null,
+    "company": "YUUGEN GAISHA TAKA KOUMUTEN",
+    "interviewDate": "24 September 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "17",
+    "name": "SRI NUR HANIFAH RAMADHANI",
+    "address": null,
+    "company": "HOSHINOKENSETSU KABUSHIKI GAISHA",
+    "interviewDate": "17 September 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "18",
+    "name": "ABD. HAFIZ",
+    "address": null,
+    "company": "KABUSHIKI GAISHA SHOUDAI KOUGYOU",
+    "interviewDate": "10 November 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "19",
+    "name": "HILAL GIFARI",
+    "address": null,
+    "company": "KABUSHIKI GAISHA SHOUDAI KOUGYOU",
+    "interviewDate": "10 November 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "20",
+    "name": "MOH. FAIZ APRIANSYAH",
+    "address": null,
+    "company": "KABUSHIKI GAISHA SHOUDAI KOUGYOU",
+    "interviewDate": "10 November 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "21",
+    "name": "RINALDI",
+    "address": null,
+    "company": "KABUSHIKI GAISHA SHOUDAI KOUGYOU",
+    "interviewDate": "10 November 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "22",
+    "name": "MOH. HASAN BASRI DATU",
+    "address": null,
+    "company": "JUN'EI KENSETSU KABUSHIKI GAISHA",
+    "interviewDate": "5 November 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "23",
+    "name": "NIRWAN",
+    "address": null,
+    "company": "KABUSHIKI GAISHA DAI KOUGYOU",
+    "interviewDate": "18 November 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "24",
+    "name": "WAHYU BUDI NUGROHO",
+    "address": null,
+    "company": "YUUGEN GAISHA MITOBE KOUGYOU",
+    "interviewDate": "8 Desember 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "25",
+    "name": "AHMAD AISY AFRAH",
+    "address": null,
+    "company": "YUUGEN GAISHA MITOBE KOUGYOU",
+    "interviewDate": "8 Desember 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "26",
+    "name": "ZULFADIN",
+    "address": null,
+    "company": "KABUSHIKI GAISHA KUBOGUMI",
+    "interviewDate": "22 Desember 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "27",
+    "name": "AGIM MAFTU",
+    "address": null,
+    "company": "YUUGENGAISHA KOA KOUGYOU",
+    "interviewDate": "22 Desember 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "28",
+    "name": "ALFIAN HAIKAL",
+    "address": null,
+    "company": "YUUGENGAISHA KOA KOUGYOU",
+    "interviewDate": "22 Desember 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "29",
+    "name": "NAUVAL HIBATULAH",
+    "address": null,
+    "company": "KABUSHIKI GAISHA IKEDA KINZOKU BANGKOUGYOU",
+    "interviewDate": "20 Januari 2026",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "30",
+    "name": "AAFIF AL FAUZI",
+    "address": null,
+    "company": "KABUSHIKI GAISHA WA KOUGYOU",
+    "interviewDate": "21 Januari 2026",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "31",
+    "name": "PARIDIN",
+    "address": null,
+    "company": "KABUSHIKI GAISHA WA KOUGYOU",
+    "interviewDate": "21 Januari 2026",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "32",
+    "name": "MOH. SULTAN",
+    "address": null,
+    "company": "KABUSHIKI GAISHA WA KOUGYOU",
+    "interviewDate": "21 Januari 2026",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "33",
+    "name": "FAHRI FAHREZI JANNAS",
+    "address": null,
+    "company": "SHIBAYAMA KOUGYOU KABUSHIKI GAISHA",
+    "interviewDate": "29 Januari 2026",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "34",
+    "name": "MUHAIDIL YAKZAN",
+    "address": null,
+    "company": "HOSHINOKENSETSU KABUSHIKI GAISHA",
+    "interviewDate": "18 Desember 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "35",
+    "name": "SALMA AULIYA",
+    "address": null,
+    "company": "YUUGEN GAISHA KANEMARU KUDO SUISAN",
+    "interviewDate": "9 Februari 2026",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "36",
+    "name": "AHMADI",
+    "address": null,
+    "company": "KABUSHIKI GAISHA RC HIGH TECH",
+    "interviewDate": "17 Februari 2026",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "37",
+    "name": "MICHAEL FERNANDES WULA",
+    "address": null,
+    "company": "YUUGEN GAISHA FUNAMOTO KOUGYO",
+    "interviewDate": "25 Desember 2026",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "38",
+    "name": "MOH. MUTASHIM",
+    "address": null,
+    "company": "YUUGEN GAISHA FUNAMOTO KOUGYO",
+    "interviewDate": "25 Desember 2026",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "39",
+    "name": "KHOERUL SYAFI'IE",
+    "address": null,
+    "company": "CHUO TEKKOU KABUSHIKI GAISHA",
+    "interviewDate": "8 April 2026",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "40",
+    "name": "MOH. RIZKI",
+    "address": null,
+    "company": "CHUO TEKKOU KABUSHIKI GAISHA",
+    "interviewDate": "8 April 2026",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "41",
+    "name": "MUZAMIL HIDAYAT",
+    "address": null,
+    "company": "IGISHI KOUGYO KABUSHIKI GAISHA",
+    "interviewDate": "27 April 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "42",
+    "name": "HENDRIK KAWIRI",
+    "address": null,
+    "company": "IGISHI KOUGYO KABUSHIKI GAISHA",
+    "interviewDate": "27 April 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "43",
+    "name": "ARIF RAHMADI",
+    "address": null,
+    "company": "IGISHI KOUGYO KABUSHIKI GAISHA",
+    "interviewDate": "27 April 2025",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "44",
+    "name": "ARIE BUDIMAN",
+    "address": null,
+    "company": "YUUGEN GAISHA SOHTETSU",
+    "interviewDate": "25 Mei 2026",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "45",
+    "name": "SEPTIYADI DARMA",
+    "address": null,
+    "company": "KABUSHIKI GAISHA TOHWAKENSETSU",
+    "interviewDate": "29 Mei 2026",
+    "departureDate": null,
+    "image": "logo"
+  },
+  {
+    "id": "46",
+    "name": "LUTFI SUHAILI",
+    "address": null,
+    "company": "KABUSHIKI GAISHA TOHWAKENSETSU",
+    "interviewDate": "29 Mei 2026",
+    "departureDate": null,
+    "image": "logo"
+  }
 ]
